@@ -1,0 +1,8 @@
+# macOS & Python
+.DS_Store
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Cached raw upstream dictionaries (regenerated automatically by scripts/build_data.py)
+data/raw_softcatala/

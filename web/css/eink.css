@@ -1,0 +1,751 @@
+/* Kindle Calm Hub - Strict Zero-Flash E-Ink Stylesheet
+ * Optimized for Kindle Paperwhite & Basic (2021+, 6" to 7" 300ppi monochrome displays)
+ * Rules: Pure binary contrast, zero transitions/animations, zero scroll inside viewport.
+ */
+
+:root {
+  --ink: #000000;
+  --paper: #ffffff;
+  --muted: #767676;
+  --border-thin: 1px solid var(--ink);
+  --border-med: 2px solid var(--ink);
+  --border-thick: 3px solid var(--ink);
+}
+
+body.inverted {
+  --ink: #ffffff;
+  --paper: #000000;
+  --muted: #999999;
+}
+
+* {
+  box-sizing: border-box;
+  transition: none !important;
+  animation: none !important;
+  box-shadow: none !important;
+  text-shadow: none !important;
+  -webkit-tap-highlight-color: transparent;
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+html, body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100vh;
+  height: 100dvh;
+  overflow: hidden;
+  background-color: var(--paper);
+  color: var(--ink);
+  font-family: Georgia, "Bookerly", "Palatino Linotype", Palatino, serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+#app {
+  max-width: 580px;
+  height: 100%;
+  margin: 0 auto;
+  padding: 6px 10px 8px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+/* Top Bar */
+.topbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: var(--border-med);
+  padding-bottom: 5px;
+  margin-bottom: 4px;
+  min-height: 38px;
+  flex-shrink: 0;
+}
+
+.topbar-title {
+  font-size: 1.08rem;
+  font-weight: bold;
+  letter-spacing: 0.01em;
+  text-align: center;
+  flex: 1;
+  padding: 0 4px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.topbar-actions {
+  display: flex;
+  gap: 5px;
+}
+
+/* Buttons */
+button, .btn {
+  appearance: none;
+  -webkit-appearance: none;
+  background: var(--paper);
+  color: var(--ink);
+  border: var(--border-med);
+  border-radius: 4px;
+  font-family: inherit;
+  font-size: 0.92rem;
+  font-weight: bold;
+  padding: 6px 10px;
+  min-height: 36px;
+  cursor: pointer;
+  touch-action: manipulation;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+}
+
+button:active, .btn:active,
+button.active, .btn.active {
+  background: var(--ink);
+  color: var(--paper);
+}
+
+button:disabled {
+  border-color: var(--muted);
+  color: var(--muted);
+  cursor: default;
+}
+
+.btn-sm {
+  font-size: 0.82rem;
+  padding: 4px 8px;
+  min-height: 32px;
+}
+
+.btn-lg {
+  font-size: 1rem;
+  padding: 9px 14px;
+  min-height: 44px;
+}
+
+/* Status / Message Banner */
+.status-bar {
+  min-height: 28px;
+  max-height: 42px;
+  padding: 3px 8px;
+  border: 1px dashed var(--ink);
+  text-align: center;
+  font-size: 0.88rem;
+  line-height: 1.2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 4px;
+  flex-shrink: 0;
+}
+
+.status-bar.solid {
+  border: var(--border-med);
+  background: var(--ink);
+  color: var(--paper);
+  font-weight: bold;
+}
+
+/* Home View */
+.home-header {
+  text-align: center;
+  padding: 2px 0 6px;
+  border-bottom: var(--border-med);
+  margin-bottom: 6px;
+}
+
+.home-header h1 {
+  font-size: 1.35rem;
+  margin: 0 0 2px;
+}
+
+.home-subtitle {
+  font-size: 0.85rem;
+  margin: 0;
+}
+
+.game-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+  flex: 1;
+  justify-content: center;
+}
+
+.game-card {
+  width: 100%;
+  text-align: left;
+  padding: 9px 12px;
+  border: var(--border-med);
+  border-radius: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: var(--paper);
+  color: var(--ink);
+}
+
+.game-card-left {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.game-card-title {
+  font-size: 1.05rem;
+  font-weight: bold;
+}
+
+.game-card-desc {
+  font-size: 0.82rem;
+  font-weight: normal;
+}
+
+.game-card-badge {
+  font-family: ui-monospace, Menlo, Consolas, monospace;
+  font-size: 0.78rem;
+  border: var(--border-thin);
+  padding: 3px 7px;
+  border-radius: 3px;
+  white-space: nowrap;
+  margin-left: 8px;
+}
+
+.home-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: 6px;
+  border-top: var(--border-thin);
+  font-size: 0.8rem;
+}
+
+/* Generic Game Container */
+.game-main {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  overflow: hidden;
+}
+
+.toolbar-row {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  align-items: center;
+  gap: 5px;
+  flex-shrink: 0;
+}
+
+.segmented {
+  display: inline-flex;
+  border: var(--border-med);
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.segmented button {
+  border: none;
+  border-right: var(--border-thin);
+  border-radius: 0;
+  min-height: 34px;
+  padding: 4px 10px;
+}
+
+.segmented button:last-child {
+  border-right: none;
+}
+
+/* ==================== 1. SUDOKU ==================== */
+.sudoku-board {
+  display: grid;
+  grid-template-columns: repeat(9, 1fr);
+  grid-template-rows: repeat(9, 1fr);
+  width: min(100%, 405px);
+  aspect-ratio: 1 / 1;
+  border: var(--border-thick);
+  background: var(--paper);
+  margin: 2px auto;
+}
+
+.sudoku-cell {
+  position: relative;
+  border-right: 1px solid var(--muted);
+  border-bottom: 1px solid var(--muted);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: ui-monospace, Menlo, Consolas, monospace;
+  font-size: 1.25rem;
+  cursor: pointer;
+  padding: 0;
+  background: var(--paper);
+  color: var(--ink);
+}
+
+.sudoku-cell.box-right {
+  border-right: var(--border-thick);
+}
+.sudoku-cell.box-bottom {
+  border-bottom: var(--border-thick);
+}
+.sudoku-cell.col-last {
+  border-right: none;
+}
+.sudoku-cell.row-last {
+  border-bottom: none;
+}
+
+.sudoku-cell.given {
+  font-weight: 900;
+}
+.sudoku-cell.given::after {
+  content: "";
+  position: absolute;
+  bottom: 3px;
+  width: 45%;
+  height: 2px;
+  background: var(--ink);
+}
+
+.sudoku-cell.user-val {
+  font-weight: 500;
+  font-family: Georgia, serif;
+  font-size: 1.32rem;
+}
+
+.sudoku-cell.selected {
+  outline: 3px solid var(--ink);
+  outline-offset: -4px;
+}
+
+.sudoku-cell.same-num {
+  background: var(--ink);
+  color: var(--paper);
+}
+.sudoku-cell.same-num.given::after {
+  background: var(--paper);
+}
+
+.sudoku-cell.conflict {
+  text-decoration: line-through;
+  outline: 2px dashed var(--ink);
+  outline-offset: -3px;
+}
+
+.sudoku-notes {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(3, 1fr);
+  width: 100%;
+  height: 100%;
+  font-family: ui-monospace, Menlo, monospace;
+  font-size: 0.62rem;
+  line-height: 1;
+  padding: 1px;
+}
+
+.sudoku-notes span {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+}
+
+.numpad-row {
+  display: grid;
+  grid-template-columns: repeat(9, 1fr);
+  gap: 4px;
+  width: 100%;
+  max-width: 460px;
+}
+
+.numpad-row button {
+  padding: 6px 0;
+  font-family: ui-monospace, Menlo, monospace;
+  font-size: 1.15rem;
+  min-height: 40px;
+}
+
+/* ==================== 2. MOTLE (WORDLE CA) ==================== */
+.motle-grid {
+  display: grid;
+  grid-template-rows: repeat(6, 1fr);
+  gap: 5px;
+  width: min(100%, 290px);
+  margin: 2px auto;
+}
+
+.motle-row {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 5px;
+}
+
+.motle-tile {
+  aspect-ratio: 1 / 1;
+  border: var(--border-med);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: ui-monospace, Menlo, monospace;
+  font-size: 1.35rem;
+  font-weight: 900;
+  position: relative;
+  background: var(--paper);
+  color: var(--ink);
+}
+
+.motle-tile.empty {
+  border: 1px solid var(--muted);
+}
+
+/* Monochrome E-Ink states (Zero color dependency) */
+.motle-tile.state-exact {
+  background: var(--ink);
+  color: var(--paper);
+  border: var(--border-thick);
+}
+
+.motle-tile.state-present {
+  background: var(--paper);
+  color: var(--ink);
+  border: 3px dashed var(--ink);
+  border-radius: 50%;
+}
+.motle-tile.state-present::after {
+  content: "◦";
+  position: absolute;
+  top: -1px;
+  right: 2px;
+  font-size: 0.68rem;
+  line-height: 1;
+}
+
+.motle-tile.state-absent {
+  background: var(--paper);
+  color: var(--muted);
+  border: 1px dotted var(--muted);
+  text-decoration: line-through;
+}
+
+.motle-legend {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  font-size: 0.76rem;
+  margin: 2px 0;
+}
+
+.kb-wrap {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.kb-row {
+  display: flex;
+  justify-content: center;
+  gap: 3px;
+  width: 100%;
+}
+
+.kb-key {
+  flex: 1;
+  min-width: 0;
+  min-height: 40px;
+  padding: 4px 1px;
+  font-family: ui-monospace, Menlo, monospace;
+  font-size: 0.94rem;
+  font-weight: bold;
+  border: var(--border-med);
+  border-radius: 4px;
+}
+
+.kb-key.kb-wide {
+  flex: 1.55;
+  font-size: 0.8rem;
+}
+
+.kb-key.k-exact {
+  background: var(--ink);
+  color: var(--paper);
+}
+
+.kb-key.k-present {
+  border: 3px dashed var(--ink);
+  text-decoration: underline;
+}
+
+.kb-key.k-absent {
+  border: 1px dotted var(--muted);
+  color: var(--muted);
+  text-decoration: line-through;
+}
+
+/* ==================== 3. EL RUSC (PARAULÒGIC) ==================== */
+.rusc-progress {
+  width: 100%;
+  border: var(--border-thin);
+  padding: 5px 8px;
+  border-radius: 4px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.85rem;
+}
+
+.rusc-input-box {
+  width: 100%;
+  min-height: 42px;
+  border-bottom: var(--border-thick);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.45rem;
+  font-weight: bold;
+  letter-spacing: 0.12em;
+  font-family: ui-monospace, Menlo, monospace;
+}
+
+.hive-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  margin: 4px 0;
+}
+
+.hive-row {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+}
+
+.hive-btn {
+  width: 66px;
+  height: 58px;
+  font-size: 1.45rem;
+  font-family: ui-monospace, Menlo, monospace;
+  font-weight: 900;
+  border: var(--border-thick);
+  border-radius: 12px;
+}
+
+.hive-btn.center-hex {
+  background: var(--ink);
+  color: var(--paper);
+  outline: 2px solid var(--ink);
+  outline-offset: 2px;
+}
+
+.rusc-recent {
+  width: 100%;
+  min-height: 34px;
+  border: 1px solid var(--muted);
+  padding: 4px 8px;
+  font-size: 0.84rem;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.words-list-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 4px 8px;
+  width: 100%;
+  padding: 6px;
+  border: var(--border-thin);
+  font-size: 0.88rem;
+  flex: 1;
+  align-content: start;
+}
+
+.word-item.is-tuti {
+  font-weight: bold;
+  text-decoration: underline;
+}
+
+/* ==================== 4. NONOGRAMES (PICROSS) ==================== */
+.nono-table {
+  border-collapse: collapse;
+  margin: 2px auto;
+  user-select: none;
+}
+
+.nono-table th, .nono-table td {
+  padding: 0;
+  text-align: center;
+}
+
+.nono-corner {
+  border: none;
+}
+
+.nono-col-clue {
+  vertical-align: bottom;
+  font-family: ui-monospace, Menlo, monospace;
+  font-size: 0.76rem;
+  font-weight: bold;
+  line-height: 1.05;
+  padding: 2px 1px 4px !important;
+  border-left: 1px dotted var(--muted);
+  border-right: 1px dotted var(--muted);
+}
+
+.nono-row-clue {
+  text-align: right !important;
+  font-family: ui-monospace, Menlo, monospace;
+  font-size: 0.78rem;
+  font-weight: bold;
+  padding: 0 6px 0 2px !important;
+  white-space: nowrap;
+  border-top: 1px dotted var(--muted);
+  border-bottom: 1px dotted var(--muted);
+}
+
+.nono-clue-done {
+  color: var(--muted);
+  text-decoration: line-through;
+}
+
+.nono-cell {
+  width: 31px;
+  height: 31px;
+  border: 1px solid var(--ink);
+  cursor: pointer;
+  font-family: ui-monospace, Menlo, monospace;
+  font-size: 1rem;
+  font-weight: bold;
+  background: var(--paper);
+  color: var(--ink);
+}
+
+.nono-size-5 .nono-cell {
+  width: 46px;
+  height: 46px;
+  font-size: 1.25rem;
+}
+
+.nono-size-8 .nono-cell {
+  width: 36px;
+  height: 36px;
+}
+
+.nono-size-10 .nono-cell {
+  width: 28px;
+  height: 28px;
+  font-size: 0.88rem;
+}
+
+.nono-cell.filled {
+  background: var(--ink);
+  color: var(--paper);
+}
+
+.nono-cell.crossed::after {
+  content: "×";
+}
+
+.nono-cell.thick-r {
+  border-right: 3px solid var(--ink);
+}
+.nono-cell.thick-b {
+  border-bottom: 3px solid var(--ink);
+}
+.nono-cell.thick-l {
+  border-left: 3px solid var(--ink);
+}
+.nono-cell.thick-t {
+  border-top: 3px solid var(--ink);
+}
+
+/* ==================== 5. BUSCAMINES ==================== */
+.mines-board {
+  display: grid;
+  border: var(--border-thick);
+  margin: 2px auto;
+  background: var(--paper);
+}
+
+.mine-cell {
+  width: 38px;
+  height: 38px;
+  border: 1px solid var(--ink);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: ui-monospace, Menlo, Consolas, monospace;
+  font-size: 1.08rem;
+  font-weight: 900;
+  cursor: pointer;
+  padding: 0;
+}
+
+.mines-board.large .mine-cell {
+  width: 34px;
+  height: 34px;
+  font-size: 1rem;
+}
+
+.mine-cell.unopened {
+  background: var(--paper);
+  box-shadow: inset -2px -2px 0 var(--ink) !important;
+}
+
+.mine-cell.opened {
+  background: var(--paper);
+  border: 1px dotted var(--muted);
+}
+
+.mine-cell.flagged {
+  background: var(--ink);
+  color: var(--paper);
+}
+
+.mine-cell.exploded {
+  background: var(--ink);
+  color: var(--paper);
+  outline: 2px dashed var(--paper);
+  outline-offset: -4px;
+}
+
+/* Modal / Help Overlay (No scroll, pure sheet) */
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: var(--paper);
+  z-index: 50;
+  padding: 14px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  max-width: 580px;
+  margin: 0 auto;
+}
+
+.modal-content h2 {
+  margin: 0 0 8px;
+  font-size: 1.2rem;
+  border-bottom: var(--border-med);
+  padding-bottom: 6px;
+}
+
+.modal-content p, .modal-content li {
+  font-size: 0.92rem;
+  line-height: 1.42;
+  margin: 6px 0;
+}
+
+.modal-content ul {
+  padding-left: 20px;
+  margin: 6px 0;
+}
