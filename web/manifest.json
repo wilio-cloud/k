@@ -1,10 +1,10 @@
 {
   "name": "Racó Calmat · Kindle E-Ink",
   "short_name": "Racó Calmat",
-  "description": "Jocs de lògica i paraules en català per descansar la vista al Kindle.",
+  "description": "Simuladors de vida, inversions, negoci i criança respectuosa per a Kindle E-Ink.",
+  "lang": "ca",
   "start_url": "./index.html",
   "display": "standalone",
   "background_color": "#ffffff",
-  "theme_color": "#ffffff",
-  "lang": "ca"
+  "theme_color": "#ffffff"
 }

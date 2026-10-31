@@ -1,18 +1,17 @@
-// Kindle Calm Hub - Offline Cache-First Service Worker
-var CACHE_NAME = "kindle-calm-hub-v2";
+// Kindle Calm Hub - Offline-Capable Service Worker (v3: Network-first with offline cache fallback)
+var CACHE_NAME = "kindle-calm-hub-v3";
 var ASSETS = [
   "./",
   "./index.html",
   "./manifest.json",
   "./css/eink.css",
-  "./js/data.js",
   "./js/storage.js",
-  "./js/games/sudoku.js",
-  "./js/games/motle.js",
-  "./js/games/rusc.js",
-  "./js/games/nonogram.js",
+  "./js/ui.js",
+  "./js/games/vides.js",
+  "./js/games/decennis.js",
+  "./js/games/fundador.js",
+  "./js/games/crianca.js",
   "./js/games/minesweeper.js",
-  "./js/games/dossier.js",
   "./js/app.js"
 ];
 
@@ -41,8 +40,18 @@ self.addEventListener("activate", function (event) {
 self.addEventListener("fetch", function (event) {
   if (event.request.method !== "GET") return;
   event.respondWith(
-    caches.match(event.request).then(function (cached) {
-      return cached || fetch(event.request);
-    })
+    fetch(event.request)
+      .then(function (networkRes) {
+        if (networkRes && networkRes.status === 200) {
+          var copy = networkRes.clone();
+          caches.open(CACHE_NAME).then(function (cache) {
+            cache.put(event.request, copy);
+          });
+        }
+        return networkRes;
+      })
+      .catch(function () {
+        return caches.match(event.request);
+      })
   );
 });

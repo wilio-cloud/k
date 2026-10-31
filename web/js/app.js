@@ -1,4 +1,4 @@
-// Kindle Calm Hub - Main Application Shell & Navigation
+// Kindle Calm Hub - Main Application Shell & Navigation (v3)
 (function () {
   var appEl = document.getElementById("app");
   var currentView = window.CalmStorage.get("active_view", "home");
@@ -8,7 +8,8 @@
     document.body.classList.add("inverted");
   }
 
-  var GAME_ORDER = ["dossier", "sudoku", "motle", "rusc", "nonogram", "minesweeper"];
+  var MAIN_GRID_GAMES = ["vides", "decennis", "fundador", "minesweeper"];
+  var FEATURED_CALM_GAME = "crianca";
 
   function formatCatalanDate() {
     var days = ["Diumenge", "Dilluns", "Dimarts", "Dimecres", "Dijous", "Divendres", "Dissabte"];
@@ -41,52 +42,72 @@
     document.body.appendChild(overlay);
   }
 
+  function makeCard(gid, extraClass) {
+    var g = window.CalmGames[gid];
+    if (!g) return null;
+    var card = document.createElement("button");
+    card.className = "game-card" + (extraClass ? " " + extraClass : "");
+
+    var left = document.createElement("div");
+    left.className = "game-card-left";
+
+    var title = document.createElement("div");
+    title.className = "game-card-title";
+    title.textContent = g.title;
+
+    var desc = document.createElement("div");
+    desc.className = "game-card-desc";
+    desc.textContent = g.desc;
+
+    left.appendChild(title);
+    left.appendChild(desc);
+
+    var badge = document.createElement("div");
+    badge.className = "game-card-badge";
+    badge.textContent = g.getBadge();
+
+    card.appendChild(left);
+    card.appendChild(badge);
+
+    card.onclick = function () {
+      navigateTo(gid);
+    };
+    return card;
+  }
+
   function renderHome() {
     appEl.innerHTML = "";
 
     var header = document.createElement("div");
     header.className = "home-header";
     header.innerHTML =
-      "<h1>Racó Calmat · E-Ink</h1>" +
-      "<p class='home-subtitle'>" + formatCatalanDate() + " · Oci i enginy sense pantalles brillants</p>";
+      "<h1>Racó Calmat · Kindle E-Ink</h1>" +
+      "<p class='home-subtitle'>" + formatCatalanDate() + " · Decisions, inversions i criança sense pantalles brillants</p>";
     appEl.appendChild(header);
 
+    var sections = document.createElement("div");
+    sections.className = "home-sections";
+
+    // Block 1: Capital, Empresa & Enginy (2x2)
+    var sec1 = document.createElement("div");
+    sec1.innerHTML = '<div class="section-heading"><span>CAPITAL, EMPRESA & ENGINY</span><span>SIMULADORS</span></div>';
     var grid = document.createElement("div");
-    grid.className = "game-grid";
-
-    GAME_ORDER.forEach(function (gid) {
-      var g = window.CalmGames[gid];
-      if (!g) return;
-      var card = document.createElement("button");
-      card.className = "game-card";
-
-      var left = document.createElement("div");
-      left.className = "game-card-left";
-
-      var title = document.createElement("div");
-      title.className = "game-card-title";
-      title.textContent = g.title;
-
-      var desc = document.createElement("div");
-      desc.className = "game-card-desc";
-      desc.textContent = g.desc;
-
-      left.appendChild(title);
-      left.appendChild(desc);
-
-      var badge = document.createElement("div");
-      badge.className = "game-card-badge";
-      badge.textContent = g.getBadge();
-
-      card.appendChild(left);
-      card.appendChild(badge);
-
-      card.onclick = function () {
-        navigateTo(gid);
-      };
-      grid.appendChild(card);
+    grid.className = "game-grid-2x2";
+    MAIN_GRID_GAMES.forEach(function (gid) {
+      var c = makeCard(gid, "");
+      if (c) grid.appendChild(c);
     });
-    appEl.appendChild(grid);
+    sec1.appendChild(grid);
+    sections.appendChild(sec1);
+
+    // Block 2: Espai Criança & Calma (Wide card)
+    var sec2 = document.createElement("div");
+    sec2.innerHTML = '<div class="section-heading"><span>ESPAI CRIANÇA, IOGA & SERENOR</span><span>FAMÍLIA</span></div>';
+    var calmCard = makeCard(FEATURED_CALM_GAME, "wide-card");
+    if (calmCard) sec2.appendChild(calmCard);
+    sections.appendChild(sec2);
+
+    appEl.appendChild(sections);
 
     var footer = document.createElement("div");
     footer.className = "home-footer";
@@ -104,15 +125,14 @@
 
     var btnTips = document.createElement("button");
     btnTips.className = "btn-sm";
-    btnTips.textContent = "? Descans visual al Kindle";
+    btnTips.textContent = "? Ús i descans visual";
     btnTips.onclick = function () {
       showModal(
-        "<h2>Com descansar els ulls al Kindle</h2>" +
+        "<h2>Com treure'n el màxim profit al Kindle</h2>" +
         "<ul>" +
-        "<li><b>Llum frontal al mínim o a 0:</b> amb una làmpada càlida d'ambient, baixa la brillantor del Kindle a 0–4 perquè funcioni 100% com el paper imprès.</li>" +
-        "<li><b>Desa aquesta pàgina als marcadors:</b> toca els tres punts (⋮) del navegador del Kindle i tria <i>Afegeix aquesta pàgina a les adreces d'interès</i>.</li>" +
-        "<li><b>Funciona sense pressa:</b> totes les partides es desen automàticament al dispositiu encara que tanquis la funda del Kindle.</li>" +
-        "<li><b>Mode Avió total:</b> per jugar sense obrir el navegador, obre el <i>Quadern d'Enginy</i> des de la teva biblioteca normal de llibres!</li>" +
+        "<li><b>Llum frontal baixa (0–4):</b> amb llum càlida d'ambient, la tinta electrònica descansa la vista exactament com un llibre de paper.</li>" +
+        "<li><b>Desat automàtic:</b> tant la teva partida d'inversions com el progrés de <i>Créixer amb Calma</i> es desen sols encara que tanquis la funda.</li>" +
+        "<li><b>Adreces d'interès:</b> prem (⋮) al navegador del Kindle per desar <b>wilio-cloud.github.io/k</b> a un sol toc.</li>" +
         "</ul>"
       );
     };
@@ -151,7 +171,7 @@
     var btnHelp = document.createElement("button");
     btnHelp.className = "btn-sm";
     btnHelp.textContent = "?";
-    btnHelp.title = "Ajuda del joc";
+    btnHelp.title = "Guia";
     btnHelp.onclick = function () {
       showModal(g.helpHtml);
     };
@@ -173,13 +193,15 @@
   }
 
   function navigateTo(view) {
+    if (view !== "home" && (!window.CalmGames || !window.CalmGames[view])) {
+      view = "home";
+    }
     currentView = view;
     window.CalmStorage.set("active_view", view);
     if (view === "home") renderHome();
     else renderGame(view);
   }
 
-  // Register Service Worker for offline caching on Kindle Chromium (5.16.4+)
   if ("serviceWorker" in navigator && window.location.protocol.indexOf("http") === 0) {
     window.addEventListener("load", function () {
       navigator.serviceWorker.register("./sw.js").catch(function () {});
