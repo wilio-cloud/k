@@ -17,6 +17,8 @@ import unicodedata
 from pathlib import Path
 from typing import Dict, List, Optional, Set, Tuple
 
+from build_dossier import build_all_dossier_cases
+
 ROOT_DIR = Path(__file__).resolve().parent.parent
 RAW_DIR = ROOT_DIR / "data" / "raw_softcatala"
 DATA_DIR = ROOT_DIR / "data"
@@ -1002,19 +1004,23 @@ def main() -> None:
     sudoku_packs = build_sudoku_packs(rng)
     nonograms = build_nonograms()
 
-    print("5/5 Generating offline EPUB deductive challenges...")
+    print("5/6 Generating offline EPUB deductive challenges...")
     epub_motle = build_epub_motle_deductive(motle_solutions, rng, count=30)
     epub_sudoku_spots = build_epub_sudoku_spot_challenges(sudoku_packs, rng, count=25)
     print(f"    -> {len(epub_motle)} deductive Motle challenges, {len(epub_sudoku_spots)} Sudoku '?' spot challenges.")
 
+    print("6/6 Synthesizing & CSP-verifying 'Dossier Forense' mystery cases...")
+    web_dossier, epub_dossier = build_all_dossier_cases(rng)
+    print(f"    -> {len(web_dossier)} Web Dossier cases + {len(epub_dossier)} offline EPUB Dossier cases.")
+
     # Write compact JS bundle for Kindle browser (web/js/data.js)
-    # Note: for web bundle, keep 36 Rusc puzzles to keep web/js/data.js super light (~120 KB total!)
     web_payload = {
         "motleSolutions": motle_solutions,
         "motleValid": motle_valid_str,
         "ruscos": rusc_puzzles[:35],
         "sudoku": sudoku_packs,
         "nonograms": nonograms,
+        "dossier": web_dossier,
     }
     js_path = WEB_JS_DIR / "data.js"
     js_content = (
@@ -1030,6 +1036,7 @@ def main() -> None:
         "ruscos": rusc_puzzles[35:60] if len(rusc_puzzles) >= 60 else rusc_puzzles[:25],
         "epubMotle": epub_motle,
         "epubSudokuSpots": epub_sudoku_spots,
+        "epubDossier": epub_dossier,
         "sudoku": sudoku_packs,
         "nonograms": nonograms,
         "motleSolutionsCount": len(motle_solutions),

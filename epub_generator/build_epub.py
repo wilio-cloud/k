@@ -386,6 +386,7 @@ def build_epub() -> Path:
     ruscos: List[Dict] = bundle["ruscos"]
     motles: List[Dict] = bundle["epubMotle"]
     spots: List[Dict] = bundle["epubSudokuSpots"]
+    dossiers: List[Dict] = bundle.get("epubDossier", [])
 
     DIST_DIR.mkdir(parents=True, exist_ok=True)
 
@@ -404,7 +405,7 @@ def build_epub() -> Path:
         '<text x="200" y="275" text-anchor="middle" font-family="Georgia, serif" font-size="24">I PARAULES</text>'
         '<polygon points="200,320 226,335 226,365 200,380 174,365 174,335" fill="#000000"/>'
         '<text x="200" y="357" text-anchor="middle" font-family="monospace" font-size="22" font-weight="bold" fill="#ffffff">★</text>'
-        '<text x="200" y="435" text-anchor="middle" font-family="Georgia, serif" font-size="16">80 reptes interactius en català</text>'
+        '<text x="200" y="435" text-anchor="middle" font-family="Georgia, serif" font-size="16">95 reptes i misteris interactius en català</text>'
         '<text x="200" y="462" text-anchor="middle" font-family="monospace" font-size="14">100% MODE AVIÓ · SENSE PANTALLES BRILLANTS</text>'
         '</svg>'
     )
@@ -424,17 +425,23 @@ def build_epub() -> Path:
     spot_links = "".join(
         f'<a href="spot_{i + 1:02d}.xhtml">{i + 1}</a>' for i in range(len(spots))
     )
+    dossier_links = "".join(
+        f'<a href="dossier_{i + 1:02d}.xhtml">{i + 1}</a>' for i in range(len(dossiers))
+    )
 
     hub_body = (
         "<h1>Índex de Reptes</h1>"
         '<p class="center subtle">Toca qualsevol número per anar directament al repte. Pensat per jugar en <b>Mode Avió</b> i amb llum frontal suau.</p>'
-        "<h2>1. Ruscos Mentals (25 reptes)</h2>"
+        "<h2>1. Dossier Forense · Misteris (15 casos)</h2>"
+        '<p class="subtle">Expedients detectivescos estil Murdle amb pistes forenses i interrogatoris.</p>'
+        f'<div class="index-grid">{dossier_links}</div>'
+        "<h2>2. Ruscos Mentals (25 reptes)</h2>"
         '<p class="subtle">Troba mentalment (o en paper) tantes paraules com puguis i descobreix el <i>tuti</i> ocult.</p>'
         f'<div class="index-grid">{rusc_links}</div>'
-        "<h2>2. Motle Deductiu (30 reptes)</h2>"
+        "<h2>3. Motle Deductiu (30 reptes)</h2>"
         '<p class="subtle">Analitza 3 intents previs i dedueix l’única paraula catalana que compleix totes les pistes.</p>'
         f'<div class="index-grid">{motle_links}</div>'
-        "<h2>3. Casella Incògnita Sudoku (25 reptes)</h2>"
+        "<h2>4. Casella Incògnita Sudoku (25 reptes)</h2>"
         '<p class="subtle">Dedueix per lògica visual quin número va a la casella marcada amb <b>?</b> i toca’l per verificar-ho.</p>'
         f'<div class="index-grid">{spot_links}</div>'
     )
@@ -622,6 +629,88 @@ def build_epub() -> Path:
         pages.append((fn_main, wrap_xhtml(f"Casella Incògnita #{num}", body_s), True, True))
 
     # ==========================================================================
+    # CHAPTER 4: 15 DOSSIER FORENSE MYSTERY CASES
+    # ==========================================================================
+    for idx, dc in enumerate(dossiers):
+        num = idx + 1
+        fn_main = f"dossier_{num:02d}.xhtml"
+        next_href = f"dossier_{num + 1:02d}.xhtml" if num < len(dossiers) else "rusc_01.xhtml"
+
+        susp_str = " · ".join(
+            f"<b>{html.escape(s['name'])}</b> [{html.escape(s['trait'])}]"
+            for s in dc["suspects"]
+        )
+        loc_str = " · ".join(
+            f"<b>{html.escape(l['name'])}</b> [{html.escape(l['trait'])}]"
+            for l in dc["locations"]
+        )
+        item_str = " · ".join(
+            f"<b>{html.escape(it['name'])}</b> [{html.escape(it['trait'])}]"
+            for it in dc["items"]
+        )
+        clues_li = "".join(f"<li>{html.escape(cl)}</li>" for cl in dc["clues"])
+        liar_banner = (
+            "<p><b>⚖ REGLA D'INTERROGATORI:</b> Tots els innocents diuen la veritat; l'únic culpable MENTEIX.</p>"
+            if dc["isLiarMode"]
+            else ""
+        )
+
+        accuse_btns = []
+        sol = dc["solution"]
+        for s_idx, s_obj in enumerate(dc["suspects"]):
+            fn_acc = f"dossier_{num:02d}_s{s_idx}.xhtml"
+            accuse_btns.append(
+                f'<a class="btn-choice" href="{fn_acc}">Acusar: {html.escape(s_obj["name"])}</a>'
+            )
+            if s_idx == sol["culprit"]:
+                v_body = (
+                    f"<h2>Dossier #{num} · Cas Resolt!</h2>"
+                    '<div class="verdict-box">'
+                    f'<div class="verdict-title">✓ Culpable identificat: {html.escape(s_obj["name"])}</div>'
+                    f"<p><b>Escenari:</b> {html.escape(dc['locations'][sol['loc']]['name'])}<br/>"
+                    f"<b>Prova del crim:</b> {html.escape(dc['items'][sol['item']]['name'])}</p>"
+                    f"<p>{html.escape(dc['epilogue'])}</p>"
+                    "</div>"
+                    '<div class="btn-row">'
+                    '<a class="btn" href="hub.xhtml">Índex</a>'
+                    f'<a class="btn-dark" href="{next_href}">Següent cas →</a>'
+                    "</div>"
+                )
+            else:
+                real_loc = dc["locations"][sol["permLoc"][s_idx]]["name"]
+                real_item = dc["items"][sol["permItem"][s_idx]]["name"]
+                v_body = (
+                    f"<h2>Dossier #{num} · Coartada Verificada</h2>"
+                    '<div class="verdict-box">'
+                    f'<div class="verdict-title">✗ {html.escape(s_obj["name"])} és innocent</div>'
+                    f"<p>Segons l'encreuament de pistes, {html.escape(s_obj['name'])} es trobava a "
+                    f"<b>{html.escape(real_loc)}</b> amb <b>{html.escape(real_item)}</b>, i no coincideix amb la prova del crim.</p>"
+                    "</div>"
+                    '<div class="btn-row">'
+                    f'<a class="btn-dark" href="{fn_main}">← Torna a l’expedient #{num}</a>'
+                    "</div>"
+                )
+            pages.append((fn_acc, wrap_xhtml(f"Dossier #{num} Acusació", v_body), False, False))
+
+        body_dc = (
+            f"<h2>{html.escape(dc['title'])} ({html.escape(dc['tierLabel'])})</h2>"
+            f"<p class=\"subtle\">{html.escape(dc['intro'])}</p>"
+            f"{liar_banner}"
+            f'<div class="words-box">'
+            f"<b>Sospitosos:</b> {susp_str}<br/>"
+            f"<b>Escenaris:</b> {loc_str}<br/>"
+            f"<b>Proves:</b> {item_str}"
+            "</div>"
+            f"<ol class=\"subtle\">{clues_li}</ol>"
+            f'<div>{"".join(accuse_btns)}</div>'
+            '<div class="btn-row">'
+            '<a class="btn" href="hub.xhtml">Índex</a>'
+            f'<a class="btn" href="{next_href}">Salta →</a>'
+            "</div>"
+        )
+        pages.append((fn_main, wrap_xhtml(dc["title"], body_dc), False, True))
+
+    # ==========================================================================
     # NAVIGATION DOCUMENTS (EPUB3 nav.xhtml + NCX)
     # ==========================================================================
     nav_body = (
@@ -630,9 +719,10 @@ def build_epub() -> Path:
         "  <ol>\n"
         '    <li><a href="cover.xhtml">Portada</a></li>\n'
         '    <li><a href="hub.xhtml">Índex Interactiu</a></li>\n'
-        '    <li><a href="rusc_01.xhtml">1. Ruscos Mentals (25 reptes)</a></li>\n'
-        '    <li><a href="motle_01.xhtml">2. Motle Deductiu (30 reptes)</a></li>\n'
-        '    <li><a href="spot_01.xhtml">3. Casella Incògnita Sudoku (25 reptes)</a></li>\n'
+        '    <li><a href="dossier_01.xhtml">1. Dossier Forense · Misteris (15 casos)</a></li>\n'
+        '    <li><a href="rusc_01.xhtml">2. Ruscos Mentals (25 reptes)</a></li>\n'
+        '    <li><a href="motle_01.xhtml">3. Motle Deductiu (30 reptes)</a></li>\n'
+        '    <li><a href="spot_01.xhtml">4. Casella Incògnita Sudoku (25 reptes)</a></li>\n'
         "  </ol>\n"
         "</nav>"
     )

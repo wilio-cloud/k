@@ -1,5 +1,5 @@
 // Kindle Calm Hub - Offline Cache-First Service Worker
-var CACHE_NAME = "kindle-calm-hub-v1";
+var CACHE_NAME = "kindle-calm-hub-v2";
 var ASSETS = [
   "./",
   "./index.html",
@@ -12,6 +12,7 @@ var ASSETS = [
   "./js/games/rusc.js",
   "./js/games/nonogram.js",
   "./js/games/minesweeper.js",
+  "./js/games/dossier.js",
   "./js/app.js"
 ];
 

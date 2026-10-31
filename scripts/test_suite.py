@@ -38,7 +38,7 @@ def test_web_assets_and_js_syntax() -> None:
     total_bytes = sum(f.stat().st_size for f in WEB_DIR.rglob("*") if f.is_file())
     kb = total_bytes / 1024.0
     print(f"      ✓ All {len(js_files)} JS files valid. Total web/ size = {kb:.1f} KB")
-    assert kb < 180.0, f"Web bundle too heavy for Kindle browser: {kb:.1f} KB"
+    assert kb < 260.0, f"Web bundle too heavy for Kindle browser: {kb:.1f} KB"
 
 
 def test_sudoku_uniqueness_and_validity() -> None:

@@ -168,21 +168,23 @@ button:disabled {
 }
 
 .game-grid {
-  display: flex;
-  flex-direction: column;
-  gap: 7px;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 8px;
   flex: 1;
-  justify-content: center;
+  align-content: center;
 }
 
 .game-card {
   width: 100%;
+  min-height: 138px;
   text-align: left;
-  padding: 9px 12px;
+  padding: 10px 11px;
   border: var(--border-med);
   border-radius: 5px;
   display: flex;
-  align-items: center;
+  flex-direction: column;
+  align-items: flex-start;
   justify-content: space-between;
   background: var(--paper);
   color: var(--ink);
@@ -191,27 +193,29 @@ button:disabled {
 .game-card-left {
   display: flex;
   flex-direction: column;
-  gap: 2px;
+  gap: 4px;
 }
 
 .game-card-title {
-  font-size: 1.05rem;
+  font-size: 1.02rem;
   font-weight: bold;
+  line-height: 1.15;
 }
 
 .game-card-desc {
-  font-size: 0.82rem;
+  font-size: 0.79rem;
   font-weight: normal;
+  line-height: 1.25;
 }
 
 .game-card-badge {
   font-family: ui-monospace, Menlo, Consolas, monospace;
-  font-size: 0.78rem;
+  font-size: 0.74rem;
   border: var(--border-thin);
-  padding: 3px 7px;
+  padding: 2px 6px;
   border-radius: 3px;
   white-space: nowrap;
-  margin-left: 8px;
+  margin-top: 6px;
 }
 
 .home-footer {
@@ -749,3 +753,203 @@ button:disabled {
   padding-left: 20px;
   margin: 6px 0;
 }
+
+/* ==================== 6. DOSSIER FORENSE (MURDLE) ==================== */
+.dossier-intro {
+  width: 100%;
+  border: var(--border-thin);
+  padding: 6px 9px;
+  border-radius: 4px;
+  font-size: 0.84rem;
+  line-height: 1.32;
+}
+
+.dossier-liar-rule {
+  margin-top: 4px;
+  padding-top: 4px;
+  border-top: 1px dashed var(--ink);
+  font-weight: bold;
+  font-size: 0.8rem;
+}
+
+.dossier-cols {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 6px;
+  width: 100%;
+  flex: 1;
+  align-content: start;
+  margin: 4px 0;
+}
+
+.dossier-col-box {
+  border: var(--border-thin);
+  border-radius: 4px;
+  padding: 5px 6px;
+}
+
+.dossier-col-box h3 {
+  margin: 0 0 4px;
+  font-size: 0.82rem;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  border-bottom: var(--border-thin);
+  padding-bottom: 2px;
+}
+
+.dossier-entity {
+  margin-bottom: 5px;
+  font-size: 0.78rem;
+  line-height: 1.22;
+}
+.dossier-entity:last-child {
+  margin-bottom: 0;
+}
+
+.dossier-entity-trait {
+  font-family: ui-monospace, Menlo, monospace;
+  font-size: 0.7rem;
+}
+
+/* L-shaped Murdle Logic Grid */
+.murdle-table {
+  border-collapse: collapse;
+  margin: 1px auto;
+  user-select: none;
+}
+
+.murdle-table th, .murdle-table td {
+  padding: 0;
+  text-align: center;
+}
+
+.m-col-hdr {
+  font-family: ui-monospace, Menlo, monospace;
+  font-size: 0.68rem;
+  font-weight: bold;
+  padding: 2px 2px 3px !important;
+  max-width: 44px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  border-top: var(--border-med);
+  border-left: 1px solid var(--muted);
+  border-right: 1px solid var(--muted);
+}
+
+.m-row-hdr {
+  font-family: ui-monospace, Menlo, monospace;
+  font-size: 0.72rem;
+  font-weight: bold;
+  text-align: right !important;
+  padding: 0 5px 0 3px !important;
+  white-space: nowrap;
+  border-left: var(--border-med);
+  border-top: 1px solid var(--muted);
+  border-bottom: 1px solid var(--muted);
+}
+
+.m-cell {
+  width: 34px;
+  height: 29px;
+  border: 1px solid var(--ink);
+  font-family: ui-monospace, Menlo, monospace;
+  font-size: 0.96rem;
+  font-weight: 900;
+  cursor: pointer;
+  background: var(--paper);
+  color: var(--ink);
+}
+
+.m-size-4 .m-cell {
+  width: 30px;
+  height: 25px;
+  font-size: 0.88rem;
+}
+
+.m-cell.m-yes {
+  background: var(--ink);
+  color: var(--paper);
+}
+
+.m-cell.m-auto {
+  color: var(--muted);
+  font-weight: normal;
+}
+
+.m-thick-l { border-left: 3px solid var(--ink) !important; }
+.m-thick-r { border-right: 3px solid var(--ink) !important; }
+.m-thick-t { border-top: 3px solid var(--ink) !important; }
+.m-thick-b { border-bottom: 3px solid var(--ink) !important; }
+
+.m-void {
+  border: none !important;
+  background: transparent !important;
+}
+
+/* Clues Checklist below Grid */
+.clue-box {
+  width: 100%;
+  border: var(--border-thin);
+  border-radius: 4px;
+  padding: 5px 8px;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  gap: 3px;
+  overflow: hidden;
+}
+
+.clue-item {
+  font-size: 0.78rem;
+  line-height: 1.24;
+  padding: 2px 3px;
+  cursor: pointer;
+  border-bottom: 1px dotted var(--muted);
+}
+.clue-item:last-child {
+  border-bottom: none;
+}
+
+.clue-item.clue-done {
+  color: var(--muted);
+  text-decoration: line-through;
+}
+
+/* Accusation View */
+.accuse-wrap {
+  width: 100%;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  gap: 6px;
+}
+
+.accuse-group {
+  border: var(--border-thin);
+  border-radius: 4px;
+  padding: 6px 8px;
+}
+
+.accuse-group-label {
+  font-size: 0.82rem;
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+.accuse-options {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 5px;
+}
+
+.accuse-epilogue {
+  border: var(--border-thick);
+  padding: 10px 12px;
+  border-radius: 5px;
+  font-size: 0.92rem;
+  line-height: 1.4;
+}
+

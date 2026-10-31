@@ -4065,6 +4065,1421 @@
       "explanation": "Observant la casella ? (fila 6, columna 2): a la fila 6 ja hi ha [1, 2, 4, 5, 6]; a la columna 2 ja hi ha [3, 7]; i al quadrant central esquerre ja hi apareixen [1, 3, 5, 6, 7, 9]. Combinant les tres restriccions, queden descartats vuit números i l'únic valor possible és el 8."
     }
   ],
+  "epubDossier": [
+    {
+      "id": 1,
+      "tier": "iniciacio",
+      "tierLabel": "Iniciació 3×3",
+      "n": 3,
+      "title": "Cas #01 · Observatori Fabra",
+      "setting": "Observatori Fabra",
+      "intro": "En plena nit d'eclipsi sobre Barcelona, la cúpula astronòmica ha aparegut tancada per dins i un astrònom no ha tornat al seu lloc.",
+      "isLiarMode": false,
+      "suspects": [
+        {
+          "short": "Soler",
+          "name": "Prof. Joana Soler",
+          "trait": "esquerrana",
+          "bio": "Catedràtica de mecànica celeste"
+        },
+        {
+          "short": "Grau",
+          "name": "Pere Grau",
+          "trait": "dretà",
+          "bio": "Conservador dels cronòmetres"
+        },
+        {
+          "short": "Puig",
+          "name": "Dr. Artur Puig",
+          "trait": "esquerrà",
+          "bio": "Meteoròleg de guàrdia"
+        }
+      ],
+      "locations": [
+        {
+          "short": "Jardí",
+          "name": "Jardí dels Pins",
+          "trait": "exterior"
+        },
+        {
+          "short": "Mirador",
+          "name": "Mirador del Vent",
+          "trait": "exterior"
+        },
+        {
+          "short": "Arxiu",
+          "name": "Arxiu de Plaques",
+          "trait": "interior"
+        }
+      ],
+      "items": [
+        {
+          "short": "Èter",
+          "name": "Ampolla d'èter",
+          "trait": "lleuger"
+        },
+        {
+          "short": "Baròmetre",
+          "name": "Baròmetre de mercuri",
+          "trait": "pesat"
+        },
+        {
+          "short": "Sextant",
+          "name": "Sextant de llautó",
+          "trait": "pesat"
+        }
+      ],
+      "clues": [
+        "L'escorcoll al Mirador del Vent demostra que allà no hi havia el sextant de llautó.",
+        "La persona que duia el baròmetre de mercuri era esquerrana.",
+        "S'ha deduït que el rellotger Grau era en un espai exterior.",
+        "Qui es trobava al Mirador del Vent portava un objecte pesat.",
+        "Consta que la Prof. Soler no va trepitjar el sector situat al Mirador del Vent.",
+        "PROVA FORENSE DEL CRIM: L'atac va passar en un espai exterior i amb un objecte lleuger."
+      ],
+      "solution": {
+        "permLoc": [
+          2,
+          0,
+          1
+        ],
+        "permItem": [
+          2,
+          0,
+          1
+        ],
+        "culprit": 1,
+        "loc": 0,
+        "item": 0
+      },
+      "epilogue": "Cas tancat! Les proves situen sense cap dubte el rellotger Grau al Jardí dels Pins amb l'ampolla d'èter (vapors volàtils de laboratori)."
+    },
+    {
+      "id": 2,
+      "tier": "iniciacio",
+      "tierLabel": "Iniciació 3×3",
+      "n": 3,
+      "title": "Cas #02 · Monestir de Poblet",
+      "setting": "Monestir de Poblet",
+      "intro": "Abans de matines, un col·leccionista que havia vingut a taxar un còdex medieval ha estat trobat sense sentit prop dels murs gòtics.",
+      "isLiarMode": false,
+      "suspects": [
+        {
+          "short": "Vidal",
+          "name": "Llorenç Vidal",
+          "trait": "esquerrà",
+          "bio": "Antiquari de manuscrits rars"
+        },
+        {
+          "short": "Serra",
+          "name": "Abat Oriol Serra",
+          "trait": "dretà",
+          "bio": "Custodi de la clau antiga"
+        },
+        {
+          "short": "Bosch",
+          "name": "Marta Bosch",
+          "trait": "dretana",
+          "bio": "Investigadora d'arxius"
+        }
+      ],
+      "locations": [
+        {
+          "short": "Scriptori",
+          "name": "Scriptorium",
+          "trait": "interior"
+        },
+        {
+          "short": "Claustre",
+          "name": "Claustre Major",
+          "trait": "exterior"
+        },
+        {
+          "short": "Celler",
+          "name": "Celler Gòtic",
+          "trait": "interior"
+        }
+      ],
+      "items": [
+        {
+          "short": "Cicuta",
+          "name": "Tintura de cicuta",
+          "trait": "lleuger"
+        },
+        {
+          "short": "Faristol",
+          "name": "Faristol de ferro",
+          "trait": "pesat"
+        },
+        {
+          "short": "Corda",
+          "name": "Cordó de campana",
+          "trait": "lleuger"
+        }
+      ],
+      "clues": [
+        "Les empremtes descarten que l'Abat Serra dugués el cordó de campana.",
+        "Qui es trobava a l'Scriptorium portava un objecte lleuger.",
+        "L'escorcoll al Celler Gòtic demostra que allà no hi havia el faristol de ferro.",
+        "La persona que duia el faristol de ferro era dretana.",
+        "S'ha deduït que l'Abat Serra era en un espai interior.",
+        "Consta que l'Abat Serra no va trepitjar el sector situat al Celler Gòtic.",
+        "PROVA FORENSE DEL CRIM: El crim es va cometre al Celler Gòtic."
+      ],
+      "solution": {
+        "permLoc": [
+          2,
+          0,
+          1
+        ],
+        "permItem": [
+          2,
+          0,
+          1
+        ],
+        "culprit": 0,
+        "loc": 2,
+        "item": 2
+      },
+      "epilogue": "Cas tancat! Les proves situen sense cap dubte el llibreter Vidal al Celler Gòtic amb el cordó de campana (fibres aspres d'espart trenat)."
+    },
+    {
+      "id": 3,
+      "tier": "iniciacio",
+      "tierLabel": "Iniciació 3×3",
+      "n": 3,
+      "title": "Cas #03 · Far del Cap de Creus",
+      "setting": "Far del Cap de Creus",
+      "intro": "La tramuntana ha deixat quatre viatgers aïllats tota la nit al promontori rocós. A trenc d'alba, algú ha sabotat la llanterna i ha comès el crim.",
+      "isLiarMode": false,
+      "suspects": [
+        {
+          "short": "Mas",
+          "name": "Júlia Mas",
+          "trait": "dretana",
+          "bio": "Estudiosa dels penya-segats"
+        },
+        {
+          "short": "Roig",
+          "name": "Capità Ferran Roig",
+          "trait": "dretà",
+          "bio": "Antic patró de cabotatge"
+        },
+        {
+          "short": "Pla",
+          "name": "Esteve Pla",
+          "trait": "esquerrà",
+          "bio": "Paisatgista solitari"
+        }
+      ],
+      "locations": [
+        {
+          "short": "Llanterna",
+          "name": "Sala de la Llanterna",
+          "trait": "interior"
+        },
+        {
+          "short": "Ràdio",
+          "name": "Cabina de Ràdio",
+          "trait": "interior"
+        },
+        {
+          "short": "Cingle",
+          "name": "Pas del Cingle",
+          "trait": "exterior"
+        }
+      ],
+      "items": [
+        {
+          "short": "Làudam",
+          "name": "Gotetes de làudam",
+          "trait": "lleuger"
+        },
+        {
+          "short": "Arpó",
+          "name": "Arpó rovellat",
+          "trait": "pesat"
+        },
+        {
+          "short": "Xarxa",
+          "name": "Cap de niló",
+          "trait": "lleuger"
+        }
+      ],
+      "clues": [
+        "Les empremtes descarten que el Capità Roig dugués el flascó de làudam.",
+        "Consta que la geòloga Mas no va trepitjar el sector situat al Pas del Cingle.",
+        "Les empremtes descarten que la geòloga Mas dugués el flascó de làudam.",
+        "Consta que la geòloga Mas no va trepitjar el sector situat a la Sala de la Llanterna.",
+        "PROVA FORENSE DEL CRIM: L'atac va passar en un espai exterior i amb un objecte pesat."
+      ],
+      "solution": {
+        "permLoc": [
+          1,
+          2,
+          0
+        ],
+        "permItem": [
+          2,
+          1,
+          0
+        ],
+        "culprit": 1,
+        "loc": 2,
+        "item": 1
+      },
+      "epilogue": "Cas tancat! Les proves situen sense cap dubte el Capità Roig al Pas del Cingle amb l'arpó rovellat (una ferida punxant amb salitre)."
+    },
+    {
+      "id": 4,
+      "tier": "iniciacio",
+      "tierLabel": "Iniciació 3×3",
+      "n": 3,
+      "title": "Cas #04 · Balneari de Caldes",
+      "setting": "Balneari de Caldes",
+      "intro": "Entre el baf de les aigües termals i el silenci de la galeria modernista, un banquer discret no ha acudit al sopar.",
+      "isLiarMode": false,
+      "suspects": [
+        {
+          "short": "Font",
+          "name": "Ramon Font",
+          "trait": "dretà",
+          "bio": "Coneixedor de tots els passadissos"
+        },
+        {
+          "short": "Nadal",
+          "name": "Comtessa Elvira Nadal",
+          "trait": "dretana",
+          "bio": "Clienta fixa de la suite reial"
+        },
+        {
+          "short": "Llor",
+          "name": "Berta Llor",
+          "trait": "esquerrana",
+          "bio": "Gestora del testament"
+        }
+      ],
+      "locations": [
+        {
+          "short": "Saló",
+          "name": "Saló dels Miralls",
+          "trait": "interior"
+        },
+        {
+          "short": "Hivern.",
+          "name": "Hivernacle de Vidre",
+          "trait": "exterior"
+        },
+        {
+          "short": "Termes",
+          "name": "Termes Romanes",
+          "trait": "interior"
+        }
+      ],
+      "items": [
+        {
+          "short": "Atiador",
+          "name": "Atiador de llautó",
+          "trait": "pesat"
+        },
+        {
+          "short": "Agulla",
+          "name": "Agulla de barret",
+          "trait": "lleuger"
+        },
+        {
+          "short": "Digital",
+          "name": "Infusió de digital",
+          "trait": "lleuger"
+        }
+      ],
+      "clues": [
+        "S'ha deduït que la Comtessa Nadal era en un espai exterior.",
+        "Consta que la secretària Llor no va trepitjar el sector situat a les Termes Romanes.",
+        "Les empremtes descarten que el majordom Font dugués l'agulla de barret.",
+        "La persona que duia l'atiador de llautó era esquerrana.",
+        "PROVA FORENSE DEL CRIM: L'atac va passar en un espai interior i amb un objecte pesat."
+      ],
+      "solution": {
+        "permLoc": [
+          2,
+          1,
+          0
+        ],
+        "permItem": [
+          2,
+          1,
+          0
+        ],
+        "culprit": 2,
+        "loc": 0,
+        "item": 0
+      },
+      "epilogue": "Cas tancat! Les proves situen sense cap dubte la secretària Llor al Saló dels Miralls amb l'atiador de llautó (sutge de la xemeneia)."
+    },
+    {
+      "id": 5,
+      "tier": "iniciacio",
+      "tierLabel": "Iniciació 3×3",
+      "n": 3,
+      "title": "Cas #05 · Refugi d'Ulldeter",
+      "setting": "Refugi d'Ulldeter",
+      "intro": "Una rufaga de neu ha tancat els camins del Pirineu. Dins del refugi de muntanya, les petjades humides delaten moviments nocturns.",
+      "isLiarMode": false,
+      "suspects": [
+        {
+          "short": "Roca",
+          "name": "Laia Roca",
+          "trait": "dretana",
+          "bio": "Topògrafa d'alta muntanya"
+        },
+        {
+          "short": "Tena",
+          "name": "Arnau Tena",
+          "trait": "esquerrà",
+          "bio": "Alpinista veterà"
+        },
+        {
+          "short": "Bru",
+          "name": "Cesc Bru",
+          "trait": "dretà",
+          "bio": "Responsable del refugi"
+        }
+      ],
+      "locations": [
+        {
+          "short": "Collada",
+          "name": "Mirador de la Collada",
+          "trait": "exterior"
+        },
+        {
+          "short": "Guarda.",
+          "name": "Cambra d'Esquís",
+          "trait": "interior"
+        },
+        {
+          "short": "Porxo",
+          "name": "Porxo de Neu",
+          "trait": "exterior"
+        }
+      ],
+      "items": [
+        {
+          "short": "Corda",
+          "name": "Corda de ràpel",
+          "trait": "lleuger"
+        },
+        {
+          "short": "Aconit",
+          "name": "Licor amb tora blava",
+          "trait": "lleuger"
+        },
+        {
+          "short": "Piolet",
+          "name": "Piolet d'escalada",
+          "trait": "pesat"
+        }
+      ],
+      "clues": [
+        "La persona que duia el piolet d'escalada era dretana.",
+        "Les empremtes descarten que el guia Arnau Tena dugués la corda de ràpel.",
+        "S'ha deduït que el guarda Cesc Bru era en un espai interior.",
+        "Qui es trobava al Porxo de Neu portava un objecte lleuger.",
+        "PROVA FORENSE DEL CRIM: L'atac va passar en un espai interior i amb un objecte lleuger."
+      ],
+      "solution": {
+        "permLoc": [
+          0,
+          2,
+          1
+        ],
+        "permItem": [
+          2,
+          1,
+          0
+        ],
+        "culprit": 2,
+        "loc": 1,
+        "item": 0
+      },
+      "epilogue": "Cas tancat! Les proves situen sense cap dubte el guarda Cesc Bru a la Cambra d'Esquís amb la corda de ràpel (fibres vermelles de poliamida)."
+    },
+    {
+      "id": 6,
+      "tier": "inspector",
+      "tierLabel": "Inspector 4×4",
+      "n": 4,
+      "title": "Cas #06 · Balneari de Caldes",
+      "setting": "Balneari de Caldes",
+      "intro": "Entre el baf de les aigües termals i el silenci de la galeria modernista, un banquer discret no ha acudit al sopar.",
+      "isLiarMode": false,
+      "suspects": [
+        {
+          "short": "Nadal",
+          "name": "Comtessa Elvira Nadal",
+          "trait": "dretana",
+          "bio": "Clienta fixa de la suite reial"
+        },
+        {
+          "short": "Font",
+          "name": "Ramon Font",
+          "trait": "dretà",
+          "bio": "Coneixedor de tots els passadissos"
+        },
+        {
+          "short": "Prat",
+          "name": "Dr. Miquel Prat",
+          "trait": "esquerrà",
+          "bio": "Director mèdic del balneari"
+        },
+        {
+          "short": "Llor",
+          "name": "Berta Llor",
+          "trait": "esquerrana",
+          "bio": "Gestora del testament"
+        }
+      ],
+      "locations": [
+        {
+          "short": "Hivern.",
+          "name": "Hivernacle de Vidre",
+          "trait": "exterior"
+        },
+        {
+          "short": "Termes",
+          "name": "Termes Romanes",
+          "trait": "interior"
+        },
+        {
+          "short": "Saló",
+          "name": "Saló dels Miralls",
+          "trait": "interior"
+        },
+        {
+          "short": "Pèrgola",
+          "name": "Pèrgola del Parc",
+          "trait": "exterior"
+        }
+      ],
+      "items": [
+        {
+          "short": "Atiador",
+          "name": "Atiador de llautó",
+          "trait": "pesat"
+        },
+        {
+          "short": "Digital",
+          "name": "Infusió de digital",
+          "trait": "lleuger"
+        },
+        {
+          "short": "Bust",
+          "name": "Bust de marbre",
+          "trait": "pesat"
+        },
+        {
+          "short": "Agulla",
+          "name": "Agulla de barret",
+          "trait": "lleuger"
+        }
+      ],
+      "clues": [
+        "S'ha deduït que la Comtessa Nadal era en un espai interior.",
+        "La persona que duia el bust de marbre era dretana.",
+        "Les empremtes descarten que el majordom Font dugués el bust de marbre.",
+        "La persona que duia l'agulla de barret era dretana.",
+        "L'escorcoll a l'Hivernacle demostra que allà no hi havia l'agulla de barret.",
+        "O bé la secretària Llor era a les Termes Romanes, o bé la Comtessa Nadal duia l'agulla de barret.",
+        "PROVA FORENSE DEL CRIM: L'atac va passar en un espai exterior i amb un objecte pesat."
+      ],
+      "solution": {
+        "permLoc": [
+          2,
+          3,
+          0,
+          1
+        ],
+        "permItem": [
+          2,
+          3,
+          0,
+          1
+        ],
+        "culprit": 2,
+        "loc": 0,
+        "item": 0
+      },
+      "epilogue": "Cas tancat! Les proves situen sense cap dubte el Dr. Prat a l'Hivernacle amb l'atiador de llautó (sutge de la xemeneia)."
+    },
+    {
+      "id": 7,
+      "tier": "inspector",
+      "tierLabel": "Inspector 4×4",
+      "n": 4,
+      "title": "Cas #07 · Refugi d'Ulldeter",
+      "setting": "Refugi d'Ulldeter",
+      "intro": "Una rufaga de neu ha tancat els camins del Pirineu. Dins del refugi de muntanya, les petjades humides delaten moviments nocturns.",
+      "isLiarMode": false,
+      "suspects": [
+        {
+          "short": "Bru",
+          "name": "Cesc Bru",
+          "trait": "dretà",
+          "bio": "Responsable del refugi"
+        },
+        {
+          "short": "Gelabert",
+          "name": "Núria Gelabert",
+          "trait": "esquerrana",
+          "bio": "Reportera de natura"
+        },
+        {
+          "short": "Tena",
+          "name": "Arnau Tena",
+          "trait": "esquerrà",
+          "bio": "Alpinista veterà"
+        },
+        {
+          "short": "Roca",
+          "name": "Laia Roca",
+          "trait": "dretana",
+          "bio": "Topògrafa d'alta muntanya"
+        }
+      ],
+      "locations": [
+        {
+          "short": "Guarda.",
+          "name": "Cambra d'Esquís",
+          "trait": "interior"
+        },
+        {
+          "short": "Llar",
+          "name": "Sala de la Llar",
+          "trait": "interior"
+        },
+        {
+          "short": "Collada",
+          "name": "Mirador de la Collada",
+          "trait": "exterior"
+        },
+        {
+          "short": "Porxo",
+          "name": "Porxo de Neu",
+          "trait": "exterior"
+        }
+      ],
+      "items": [
+        {
+          "short": "Corda",
+          "name": "Corda de ràpel",
+          "trait": "lleuger"
+        },
+        {
+          "short": "Aconit",
+          "name": "Licor amb tora blava",
+          "trait": "lleuger"
+        },
+        {
+          "short": "Piolet",
+          "name": "Piolet d'escalada",
+          "trait": "pesat"
+        },
+        {
+          "short": "Grampons",
+          "name": "Parell de grampons",
+          "trait": "pesat"
+        }
+      ],
+      "clues": [
+        "O bé el guia Arnau Tena era al Mirador de la Collada, o bé la cartògrafa Roca duia els grampons de ferro.",
+        "S'ha deduït que el guarda Cesc Bru era en un espai exterior.",
+        "Qui es trobava al Porxo de Neu portava un objecte lleuger.",
+        "Les empremtes descarten que la cartògrafa Roca dugués els grampons de ferro.",
+        "O bé la cartògrafa Roca era a la Sala de la Llar, o bé el guarda Cesc Bru duia el licor amb tora blava.",
+        "La persona que duia el licor amb tora blava era esquerrana.",
+        "PROVA FORENSE DEL CRIM: L'atac va passar en un espai interior i amb un objecte lleuger."
+      ],
+      "solution": {
+        "permLoc": [
+          3,
+          0,
+          2,
+          1
+        ],
+        "permItem": [
+          0,
+          1,
+          3,
+          2
+        ],
+        "culprit": 1,
+        "loc": 0,
+        "item": 1
+      },
+      "epilogue": "Cas tancat! Les proves situen sense cap dubte la fotògrafa Gelabert a la Cambra d'Esquís amb el licor amb tora blava (restes d'arrel pirinenca tòxica)."
+    },
+    {
+      "id": 8,
+      "tier": "inspector",
+      "tierLabel": "Inspector 4×4",
+      "n": 4,
+      "title": "Cas #08 · Ateneu Vuitcentista",
+      "setting": "Ateneu Vuitcentista",
+      "intro": "Durant el torneig anual d'escacs per correspondència, s'ha produït una apagada de cinc minuts i el campió vigent ha caigut fulminat.",
+      "isLiarMode": false,
+      "suspects": [
+        {
+          "short": "Torres",
+          "name": "Víctor Torres",
+          "trait": "esquerrà",
+          "bio": "Columnista de passatemps"
+        },
+        {
+          "short": "Vallès",
+          "name": "Isona Vallès",
+          "trait": "dretana",
+          "bio": "Analista de probabilitats"
+        },
+        {
+          "short": "Sala",
+          "name": "Enric Sala",
+          "trait": "dretà",
+          "bio": "Zelador dels incunables"
+        },
+        {
+          "short": "Mora",
+          "name": "Mercè Mora",
+          "trait": "esquerrana",
+          "bio": "Gran mestra de finals de torre"
+        }
+      ],
+      "locations": [
+        {
+          "short": "Galeria",
+          "name": "Galeria Oberta",
+          "trait": "exterior"
+        },
+        {
+          "short": "Jardí",
+          "name": "Pati de les Palmeres",
+          "trait": "exterior"
+        },
+        {
+          "short": "Bibliot.",
+          "name": "Biblioteca Gran",
+          "trait": "interior"
+        },
+        {
+          "short": "Hemerot.",
+          "name": "Hemeroteca Fosca",
+          "trait": "interior"
+        }
+      ],
+      "items": [
+        {
+          "short": "Trofeu",
+          "name": "Trofeu d'ònix",
+          "trait": "pesat"
+        },
+        {
+          "short": "Plegad.",
+          "name": "Plegadora d'ivori",
+          "trait": "lleuger"
+        },
+        {
+          "short": "Arsènic",
+          "name": "Pols d'arsènic",
+          "trait": "lleuger"
+        },
+        {
+          "short": "Rellotge",
+          "name": "Rellotge de plom",
+          "trait": "pesat"
+        }
+      ],
+      "clues": [
+        "Les empremtes descarten que el bibliotecari Sala dugués el rellotge d'escacs de plom.",
+        "Consta que el bibliotecari Sala no va trepitjar el sector situat a la Galeria Oberta.",
+        "S'ha deduït que el crític Torres era en un espai exterior.",
+        "La persona que duia la plegadora d'ivori era dretana.",
+        "Qui es trobava a la Galeria Oberta portava un objecte lleuger.",
+        "S'ha deduït que el bibliotecari Sala era en un espai exterior.",
+        "Consta que la matemàtica Vallès no va trepitjar el sector situat a la Biblioteca Gran.",
+        "PROVA FORENSE DEL CRIM: L'atac va passar en un espai exterior i amb un objecte pesat."
+      ],
+      "solution": {
+        "permLoc": [
+          0,
+          3,
+          1,
+          2
+        ],
+        "permItem": [
+          2,
+          1,
+          0,
+          3
+        ],
+        "culprit": 2,
+        "loc": 1,
+        "item": 0
+      },
+      "epilogue": "Cas tancat! Les proves situen sense cap dubte el bibliotecari Sala al Pati de les Palmeres amb el trofeu d'ònix (una estella de pedra negra brillant)."
+    },
+    {
+      "id": 9,
+      "tier": "inspector",
+      "tierLabel": "Inspector 4×4",
+      "n": 4,
+      "title": "Cas #09 · Celler del Priorat",
+      "setting": "Celler del Priorat",
+      "intro": "La nit del tast privat de la collita centenària, algú ha baixat a les voltes subterrànies i ha silenciat el comprador estranger.",
+      "isLiarMode": false,
+      "suspects": [
+        {
+          "short": "Costa",
+          "name": "Marina Costa",
+          "trait": "esquerrana",
+          "bio": "Copropietària de les vinyes"
+        },
+        {
+          "short": "Miró",
+          "name": "Jaume Miró",
+          "trait": "esquerrà",
+          "bio": "Mestre artesà del roure"
+        },
+        {
+          "short": "Lleó",
+          "name": "Guillem Lleó",
+          "trait": "dretà",
+          "bio": "Tastador de prestigi"
+        },
+        {
+          "short": "Caralt",
+          "name": "Eulàlia Caralt",
+          "trait": "dretana",
+          "bio": "Creadora del vi reserva"
+        }
+      ],
+      "locations": [
+        {
+          "short": "Porxo",
+          "name": "Porxo de Llicorella",
+          "trait": "exterior"
+        },
+        {
+          "short": "Bótes",
+          "name": "Sala de Bótes",
+          "trait": "interior"
+        },
+        {
+          "short": "Era",
+          "name": "Era Vella",
+          "trait": "exterior"
+        },
+        {
+          "short": "Lab.",
+          "name": "Laboratori de Tast",
+          "trait": "interior"
+        }
+      ],
+      "items": [
+        {
+          "short": "Maça",
+          "name": "Maça de boter",
+          "trait": "pesat"
+        },
+        {
+          "short": "Lleixiu",
+          "name": "Reactiu sulfític",
+          "trait": "lleuger"
+        },
+        {
+          "short": "Falçó",
+          "name": "Falçó de verema",
+          "trait": "lleuger"
+        },
+        {
+          "short": "Premsa",
+          "name": "Barra de premsa",
+          "trait": "pesat"
+        }
+      ],
+      "clues": [
+        "La persona que duia la maça de fusta de roure era dretana.",
+        "O bé el sommelier Lleó era a la Sala de Bótes, o bé l'enòloga Caralt duia el falçó de verema.",
+        "O bé el boter Miró era al Porxo de Llicorella, o bé el sommelier Lleó duia el reactiu químic.",
+        "L'escorcoll al Laboratori de Tast demostra que allà no hi havia la barra de la premsa.",
+        "S'ha deduït que l'enòloga Caralt era en un espai exterior.",
+        "La persona que duia el reactiu químic era dretana.",
+        "Qui es trobava a l'Era Vella portava un objecte lleuger.",
+        "PROVA FORENSE DEL CRIM: L'atac va passar en un espai exterior i amb un objecte pesat."
+      ],
+      "solution": {
+        "permLoc": [
+          3,
+          0,
+          1,
+          2
+        ],
+        "permItem": [
+          2,
+          3,
+          0,
+          1
+        ],
+        "culprit": 1,
+        "loc": 0,
+        "item": 3
+      },
+      "epilogue": "Cas tancat! Les proves situen sense cap dubte el boter Miró al Porxo de Llicorella amb la barra de la premsa (taques fosques de brisa de raïm)."
+    },
+    {
+      "id": 10,
+      "tier": "inspector",
+      "tierLabel": "Inspector 4×4",
+      "n": 4,
+      "title": "Cas #10 · Gran Teatre del Liceu",
+      "setting": "Gran Teatre del Liceu",
+      "intro": "Durant l'entreacte de l'òpera d'hivern, les llums de gas han pampalluguejat i s'ha descobert un crim silenciós abans que s'aixequés el teló.",
+      "isLiarMode": false,
+      "suspects": [
+        {
+          "short": "Valls",
+          "name": "Dra. Queralt Valls",
+          "trait": "esquerrana",
+          "bio": "Metgessa foniatra dels solistes"
+        },
+        {
+          "short": "Dalmau",
+          "name": "Bernat Dalmau",
+          "trait": "esquerrà",
+          "bio": "Mecenas endeutat del teatre"
+        },
+        {
+          "short": "Mont",
+          "name": "Clara Mont",
+          "trait": "dretana",
+          "bio": "Diva principal de la nit"
+        },
+        {
+          "short": "Bofill",
+          "name": "Mestre Mateu Bofill",
+          "trait": "dretà",
+          "bio": "Primer director d'orquestra"
+        }
+      ],
+      "locations": [
+        {
+          "short": "Llotja",
+          "name": "Llotja Reial",
+          "trait": "interior"
+        },
+        {
+          "short": "Camerino",
+          "name": "Camerino Principal",
+          "trait": "interior"
+        },
+        {
+          "short": "Terrassa",
+          "name": "Terrassa dels Miralls",
+          "trait": "exterior"
+        },
+        {
+          "short": "Fossat",
+          "name": "Fossat d'Orquestra",
+          "trait": "interior"
+        }
+      ],
+      "items": [
+        {
+          "short": "Estilet",
+          "name": "Estilet d'atrezzo",
+          "trait": "lleuger"
+        },
+        {
+          "short": "Cianur",
+          "name": "Flascó de cianur",
+          "trait": "lleuger"
+        },
+        {
+          "short": "Contrapès",
+          "name": "Contrapès de teló",
+          "trait": "pesat"
+        },
+        {
+          "short": "Canelobre",
+          "name": "Canelobre de bronze",
+          "trait": "pesat"
+        }
+      ],
+      "clues": [
+        "L'escorcoll al Camerino Principal demostra que allà no hi havia el contrapès de ferro.",
+        "Consta que la Dra. Valls no va trepitjar el sector situat al Fossat d'Orquestra.",
+        "O bé l'empresari Dalmau era al Camerino Principal, o bé la soprano Clara Mont duia el contrapès de ferro.",
+        "S'ha deduït que la soprano Clara Mont era en un espai interior.",
+        "Les empremtes descarten que la soprano Clara Mont dugués l'estilet d'atrezzo.",
+        "Consta que la Dra. Valls no va trepitjar el sector situat a la Terrassa Exterior.",
+        "La persona que duia el contrapès de ferro era esquerrana.",
+        "PROVA FORENSE DEL CRIM: L'atac va passar en un espai exterior i amb un objecte pesat."
+      ],
+      "solution": {
+        "permLoc": [
+          0,
+          1,
+          3,
+          2
+        ],
+        "permItem": [
+          2,
+          0,
+          1,
+          3
+        ],
+        "culprit": 3,
+        "loc": 2,
+        "item": 3
+      },
+      "epilogue": "Cas tancat! Les proves situen sense cap dubte el Mestre Bofill a la Terrassa Exterior amb el canelobre de bronze (restes de cera verda i un cop sec)."
+    },
+    {
+      "id": 11,
+      "tier": "comissari",
+      "tierLabel": "Interrogatori (1 mentider)",
+      "n": 3,
+      "title": "Cas #11 · Ateneu Vuitcentista",
+      "setting": "Ateneu Vuitcentista",
+      "intro": "Durant el torneig anual d'escacs per correspondència, s'ha produït una apagada de cinc minuts i el campió vigent ha caigut fulminat.",
+      "isLiarMode": true,
+      "suspects": [
+        {
+          "short": "Torres",
+          "name": "Víctor Torres",
+          "trait": "esquerrà",
+          "bio": "Columnista de passatemps"
+        },
+        {
+          "short": "Sala",
+          "name": "Enric Sala",
+          "trait": "dretà",
+          "bio": "Zelador dels incunables"
+        },
+        {
+          "short": "Vallès",
+          "name": "Isona Vallès",
+          "trait": "dretana",
+          "bio": "Analista de probabilitats"
+        }
+      ],
+      "locations": [
+        {
+          "short": "Jardí",
+          "name": "Pati de les Palmeres",
+          "trait": "exterior"
+        },
+        {
+          "short": "Galeria",
+          "name": "Galeria Oberta",
+          "trait": "exterior"
+        },
+        {
+          "short": "Hemerot.",
+          "name": "Hemeroteca Fosca",
+          "trait": "interior"
+        }
+      ],
+      "items": [
+        {
+          "short": "Rellotge",
+          "name": "Rellotge de plom",
+          "trait": "pesat"
+        },
+        {
+          "short": "Plegad.",
+          "name": "Plegadora d'ivori",
+          "trait": "lleuger"
+        },
+        {
+          "short": "Trofeu",
+          "name": "Trofeu d'ònix",
+          "trait": "pesat"
+        }
+      ],
+      "clues": [
+        "Torres: «Jo era a la Galeria Oberta.»",
+        "Sala: «La matemàtica Vallès era al Pati de les Palmeres.»",
+        "Vallès: «Jo no duia la plegadora d'ivori.»",
+        "PROVA: Qui es trobava a la Galeria Oberta portava un objecte lleuger.",
+        "PROVA: S'ha deduït que el crític Torres era en un espai exterior.",
+        "PROVA: S'ha confirmat que el trofeu d'ònix es trobava a l'Hemeroteca."
+      ],
+      "solution": {
+        "permLoc": [
+          1,
+          0,
+          2
+        ],
+        "permItem": [
+          1,
+          0,
+          2
+        ],
+        "culprit": 1,
+        "loc": 0,
+        "item": 0
+      },
+      "epilogue": "Cas tancat! Enric Sala s'ha contradit en afirmar «La matemàtica Vallès era al Pati de les Palmeres.» En realitat es trobava al Pati de les Palmeres i duia el rellotge d'escacs de plom, deixant una molla saltada a l'hora exacta."
+    },
+    {
+      "id": 12,
+      "tier": "comissari",
+      "tierLabel": "Interrogatori (1 mentider)",
+      "n": 3,
+      "title": "Cas #12 · Celler del Priorat",
+      "setting": "Celler del Priorat",
+      "intro": "La nit del tast privat de la collita centenària, algú ha baixat a les voltes subterrànies i ha silenciat el comprador estranger.",
+      "isLiarMode": true,
+      "suspects": [
+        {
+          "short": "Caralt",
+          "name": "Eulàlia Caralt",
+          "trait": "dretana",
+          "bio": "Creadora del vi reserva"
+        },
+        {
+          "short": "Costa",
+          "name": "Marina Costa",
+          "trait": "esquerrana",
+          "bio": "Copropietària de les vinyes"
+        },
+        {
+          "short": "Lleó",
+          "name": "Guillem Lleó",
+          "trait": "dretà",
+          "bio": "Tastador de prestigi"
+        }
+      ],
+      "locations": [
+        {
+          "short": "Porxo",
+          "name": "Porxo de Llicorella",
+          "trait": "exterior"
+        },
+        {
+          "short": "Bótes",
+          "name": "Sala de Bótes",
+          "trait": "interior"
+        },
+        {
+          "short": "Lab.",
+          "name": "Laboratori de Tast",
+          "trait": "interior"
+        }
+      ],
+      "items": [
+        {
+          "short": "Lleixiu",
+          "name": "Reactiu sulfític",
+          "trait": "lleuger"
+        },
+        {
+          "short": "Maça",
+          "name": "Maça de boter",
+          "trait": "pesat"
+        },
+        {
+          "short": "Falçó",
+          "name": "Falçó de verema",
+          "trait": "lleuger"
+        }
+      ],
+      "clues": [
+        "Caralt: «Jo era al Porxo de Llicorella.»",
+        "Costa: «Jo era al Porxo de Llicorella.»",
+        "Lleó: «Vaig veure l'enòloga Caralt a la Sala de Bótes.»",
+        "PROVA: Les empremtes descarten que l'hereva Costa dugués el falçó de verema.",
+        "PROVA: Qui duia el reactiu químic era l'enòloga Caralt."
+      ],
+      "solution": {
+        "permLoc": [
+          1,
+          0,
+          2
+        ],
+        "permItem": [
+          0,
+          1,
+          2
+        ],
+        "culprit": 0,
+        "loc": 1,
+        "item": 0
+      },
+      "epilogue": "Cas tancat! Eulàlia Caralt s'ha contradit en afirmar «Jo era al Porxo de Llicorella.» En realitat es trobava a la Sala de Bótes i duia el reactiu químic, deixant una fortor punyent de sofre."
+    },
+    {
+      "id": 13,
+      "tier": "comissari",
+      "tierLabel": "Interrogatori (1 mentider)",
+      "n": 3,
+      "title": "Cas #13 · Gran Teatre del Liceu",
+      "setting": "Gran Teatre del Liceu",
+      "intro": "Durant l'entreacte de l'òpera d'hivern, les llums de gas han pampalluguejat i s'ha descobert un crim silenciós abans que s'aixequés el teló.",
+      "isLiarMode": true,
+      "suspects": [
+        {
+          "short": "Dalmau",
+          "name": "Bernat Dalmau",
+          "trait": "esquerrà",
+          "bio": "Mecenas endeutat del teatre"
+        },
+        {
+          "short": "Mont",
+          "name": "Clara Mont",
+          "trait": "dretana",
+          "bio": "Diva principal de la nit"
+        },
+        {
+          "short": "Valls",
+          "name": "Dra. Queralt Valls",
+          "trait": "esquerrana",
+          "bio": "Metgessa foniatra dels solistes"
+        }
+      ],
+      "locations": [
+        {
+          "short": "Llotja",
+          "name": "Llotja Reial",
+          "trait": "interior"
+        },
+        {
+          "short": "Camerino",
+          "name": "Camerino Principal",
+          "trait": "interior"
+        },
+        {
+          "short": "Fossat",
+          "name": "Fossat d'Orquestra",
+          "trait": "interior"
+        }
+      ],
+      "items": [
+        {
+          "short": "Cianur",
+          "name": "Flascó de cianur",
+          "trait": "lleuger"
+        },
+        {
+          "short": "Estilet",
+          "name": "Estilet d'atrezzo",
+          "trait": "lleuger"
+        },
+        {
+          "short": "Contrapès",
+          "name": "Contrapès de teló",
+          "trait": "pesat"
+        }
+      ],
+      "clues": [
+        "Dalmau: «Vaig veure la soprano Clara Mont al Fossat d'Orquestra.»",
+        "Mont: «Jo no tenia el contrapès de ferro.»",
+        "Valls: «Jo no duia l'estilet d'atrezzo.»",
+        "PROVA: Qui duia el contrapès de ferro era la soprano Clara Mont.",
+        "PROVA: S'ha confirmat que l'estilet d'atrezzo es trobava al Camerino Principal."
+      ],
+      "solution": {
+        "permLoc": [
+          1,
+          2,
+          0
+        ],
+        "permItem": [
+          1,
+          2,
+          0
+        ],
+        "culprit": 1,
+        "loc": 2,
+        "item": 2
+      },
+      "epilogue": "Cas tancat! Clara Mont s'ha contradit en afirmar «Jo no tenia el contrapès de ferro.» En realitat es trobava al Fossat d'Orquestra i duia el contrapès de ferro, deixant pols d'òxid negre de la tramoia."
+    },
+    {
+      "id": 14,
+      "tier": "comissari",
+      "tierLabel": "Interrogatori (1 mentider)",
+      "n": 3,
+      "title": "Cas #14 · Observatori Fabra",
+      "setting": "Observatori Fabra",
+      "intro": "En plena nit d'eclipsi sobre Barcelona, la cúpula astronòmica ha aparegut tancada per dins i un astrònom no ha tornat al seu lloc.",
+      "isLiarMode": true,
+      "suspects": [
+        {
+          "short": "Grau",
+          "name": "Pere Grau",
+          "trait": "dretà",
+          "bio": "Conservador dels cronòmetres"
+        },
+        {
+          "short": "Riba",
+          "name": "Helena Riba",
+          "trait": "dretana",
+          "bio": "Especialista en cometes"
+        },
+        {
+          "short": "Soler",
+          "name": "Prof. Joana Soler",
+          "trait": "esquerrana",
+          "bio": "Catedràtica de mecànica celeste"
+        }
+      ],
+      "locations": [
+        {
+          "short": "Mirador",
+          "name": "Mirador del Vent",
+          "trait": "exterior"
+        },
+        {
+          "short": "Cúpula",
+          "name": "Cúpula Gran",
+          "trait": "interior"
+        },
+        {
+          "short": "Arxiu",
+          "name": "Arxiu de Plaques",
+          "trait": "interior"
+        }
+      ],
+      "items": [
+        {
+          "short": "Lent",
+          "name": "Prisma esmolat",
+          "trait": "lleuger"
+        },
+        {
+          "short": "Èter",
+          "name": "Ampolla d'èter",
+          "trait": "lleuger"
+        },
+        {
+          "short": "Baròmetre",
+          "name": "Baròmetre de mercuri",
+          "trait": "pesat"
+        }
+      ],
+      "clues": [
+        "Grau: «Vaig veure la cartògrafa Riba a la Cúpula Gran.»",
+        "Riba: «Jo era a l'Arxiu de Plaques.»",
+        "Soler: «Vaig veure el rellotger Grau al Mirador del Vent.»",
+        "PROVA: Es va veure la Prof. Soler a l'Arxiu de Plaques.",
+        "PROVA: Qui duia el prisma esmolat era el rellotger Grau.",
+        "PROVA: La persona que duia el baròmetre de mercuri era esquerrana."
+      ],
+      "solution": {
+        "permLoc": [
+          0,
+          1,
+          2
+        ],
+        "permItem": [
+          0,
+          1,
+          2
+        ],
+        "culprit": 1,
+        "loc": 1,
+        "item": 1
+      },
+      "epilogue": "Cas tancat! Helena Riba s'ha contradit en afirmar «Jo era a l'Arxiu de Plaques.» En realitat es trobava a la Cúpula Gran i duia l'ampolla d'èter, deixant vapors volàtils de laboratori."
+    },
+    {
+      "id": 15,
+      "tier": "comissari",
+      "tierLabel": "Interrogatori (1 mentider)",
+      "n": 3,
+      "title": "Cas #15 · Monestir de Poblet",
+      "setting": "Monestir de Poblet",
+      "intro": "Abans de matines, un col·leccionista que havia vingut a taxar un còdex medieval ha estat trobat sense sentit prop dels murs gòtics.",
+      "isLiarMode": true,
+      "suspects": [
+        {
+          "short": "Serra",
+          "name": "Abat Oriol Serra",
+          "trait": "dretà",
+          "bio": "Custodi de la clau antiga"
+        },
+        {
+          "short": "Bosch",
+          "name": "Marta Bosch",
+          "trait": "dretana",
+          "bio": "Investigadora d'arxius"
+        },
+        {
+          "short": "Pons",
+          "name": "Mireia Pons",
+          "trait": "esquerrana",
+          "bio": "Experta en pergamins reials"
+        }
+      ],
+      "locations": [
+        {
+          "short": "Celler",
+          "name": "Celler Gòtic",
+          "trait": "interior"
+        },
+        {
+          "short": "Claustre",
+          "name": "Claustre Major",
+          "trait": "exterior"
+        },
+        {
+          "short": "Scriptori",
+          "name": "Scriptorium",
+          "trait": "interior"
+        }
+      ],
+      "items": [
+        {
+          "short": "Corda",
+          "name": "Cordó de campana",
+          "trait": "lleuger"
+        },
+        {
+          "short": "Faristol",
+          "name": "Faristol de ferro",
+          "trait": "pesat"
+        },
+        {
+          "short": "Calze",
+          "name": "Calze d'argent",
+          "trait": "pesat"
+        }
+      ],
+      "clues": [
+        "Serra: «Jo era a l'Scriptorium.»",
+        "Bosch: «Jo era a l'Scriptorium.»",
+        "Pons: «Vaig veure l'Abat Serra al Celler Gòtic.»",
+        "PROVA: Qui duia el cordó de campana era l'Abat Serra.",
+        "PROVA: La persona que duia el faristol de ferro era esquerrana."
+      ],
+      "solution": {
+        "permLoc": [
+          0,
+          2,
+          1
+        ],
+        "permItem": [
+          0,
+          2,
+          1
+        ],
+        "culprit": 0,
+        "loc": 0,
+        "item": 0
+      },
+      "epilogue": "Cas tancat! Abat Oriol Serra s'ha contradit en afirmar «Jo era a l'Scriptorium.» En realitat es trobava al Celler Gòtic i duia el cordó de campana, deixant fibres aspres d'espart trenat."
+    }
+  ],
   "sudoku": {
     "facil": [
       {

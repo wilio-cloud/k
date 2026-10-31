@@ -9,7 +9,8 @@ Plataforma personal d'enginy, lògica i paraules en català dissenyada exclusiva
 ## Contingut del Sistema
 
 ### 1. Portal Web E-Ink (`web/`)
-Aplicació web ultralleugera (`~170 KB` amb tot el diccionari i puzles inclosos, zero frameworks, mode fora de línia amb *Service Worker* i partides desades automàticament a `localStorage`):
+Aplicació web ultralleugera (`~240 KB` amb tot el diccionari i puzles inclosos, zero frameworks, mode fora de línia amb *Service Worker* i partides desades automàticament a `localStorage`):
+- **Dossier Forense (estil *Murdle*):** 24 casos detectivescos verificats amb solver CSP en 3 modalitats (*Iniciació 3×3*, *Inspector 4×4* amb disjuncions lògiques i *Interrogatori Mentider* on l'únic culpable menteix), amb graella lògica croada en forma d'`L`, auto-descart i ratllat tàctil de pistes.
 - **Sudoku Calmat:** 45 taulers verificats amb solució única (*Suau*, *Mitjà*, *Repte*), mode d'anotacions `3×3`, desfer i pistes lògiques raonades.
 - **Motle Català:** Estil Wordle amb més de 5.200 mots catalans vàlids del DIEC/Softcatalà, mode *Mot del dia* i *Partida lliure*, teclat català amb `Ç` i codificació geomètrica monocroma sense dependre del color.
 - **El Rusc de Mots:** Estil Paraulògic amb 35 ruscos equilibrats, *tutis* garantits, marcador de rangs i pistes per prefixos.
@@ -17,7 +18,8 @@ Aplicació web ultralleugera (`~170 KB` amb tot el diccionari i puzles inclosos,
 - **Buscamines Tàctil:** Taulers `8×8` i `9×10`, primera casella sempre segura, obertura ràpida per números complets i selector inferior `□ Obrir` / `⚑ Bandera` (sense necessitat de mantenir premut el dit).
 
 ### 2. Llibre-App Interactiu per a Mode Avió (`dist/quadern-enginy-kindle.epub`)
-Llibre **EPUB 3.0** amb 478 pantalles enllaçades i gràfics vectorials SVG d'alt contrast (300 ppi) que s'obre des de la biblioteca nativa del Kindle amb el **Wi-Fi desactivat**:
+Llibre **EPUB 3.0** amb 543 pantalles enllaçades i gràfics vectorials SVG d'alt contrast (300 ppi) que s'obre des de la biblioteca nativa del Kindle amb el **Wi-Fi desactivat**:
+- **15 Casos exclusius de Dossier Forense** amb verificació d'acusacions sense espòilers.
 - **25 Ruscos Mentals** amb pàgina independent de pistes de prefixos i solucions completes.
 - **30 Reptes de Motle Deductiu** d'opció múltiple amb validació immediata sense espòilers.
 - **25 Reptes de Casella Incògnita (Sudoku)** amb botons interactius `[1]..[9]` i explicació del pas lògic.

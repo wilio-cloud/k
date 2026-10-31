@@ -8,7 +8,7 @@
     document.body.classList.add("inverted");
   }
 
-  var GAME_ORDER = ["sudoku", "motle", "rusc", "nonogram", "minesweeper"];
+  var GAME_ORDER = ["dossier", "sudoku", "motle", "rusc", "nonogram", "minesweeper"];
 
   function formatCatalanDate() {
     var days = ["Diumenge", "Dilluns", "Dimarts", "Dimecres", "Dijous", "Divendres", "Dissabte"];
