@@ -1,5 +1,5 @@
 // Kindle Calm Hub - Offline-Capable Service Worker (v3: Network-first with offline cache fallback)
-var CACHE_NAME = "kindle-calm-hub-v3";
+var CACHE_NAME = "kindle-calm-hub-v4";
 var ASSETS = [
   "./",
   "./index.html",

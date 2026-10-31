@@ -1,11 +1,16 @@
-// Kindle Calm Hub - Main Application Shell & Navigation (v3)
+// Kindle Calm Hub - Main Application Shell & Navigation (v4: Native In-App Help & Font Scaling)
 (function () {
   var appEl = document.getElementById("app");
   var currentView = window.CalmStorage.get("active_view", "home");
   var inverted = window.CalmStorage.get("inverted_theme", false);
+  var fontXL = window.CalmStorage.get("font_xl", false);
+  var activeHelpHtml = null;
 
   if (inverted) {
     document.body.classList.add("inverted");
+  }
+  if (fontXL) {
+    document.documentElement.classList.add("font-xl");
   }
 
   var MAIN_GRID_GAMES = ["vides", "decennis", "fundador", "minesweeper"];
@@ -21,25 +26,66 @@
     return days[now.getDay()] + ", " + now.getDate() + " " + months[now.getMonth()];
   }
 
-  function showModal(htmlContent) {
-    var overlay = document.createElement("div");
-    overlay.className = "modal-overlay";
+  function toggleFontXL() {
+    fontXL = !fontXL;
+    window.CalmStorage.set("font_xl", fontXL);
+    if (fontXL) document.documentElement.classList.add("font-xl");
+    else document.documentElement.classList.remove("font-xl");
+    rerender();
+  }
 
-    var content = document.createElement("div");
-    content.className = "modal-content";
-    content.innerHTML = htmlContent;
+  // Renders directly inside #app instead of position:fixed overlay so 100% of Kindle firmwares display it cleanly
+  function openHelp(htmlContent) {
+    activeHelpHtml = htmlContent;
+    rerender();
+  }
+
+  function closeHelp() {
+    activeHelpHtml = null;
+    rerender();
+  }
+
+  function renderHelpSheet() {
+    appEl.innerHTML = "";
+
+    var topbar = document.createElement("div");
+    topbar.className = "topbar";
+
+    var btnBack = document.createElement("button");
+    btnBack.className = "btn-sm";
+    btnBack.textContent = "← Tornar";
+    btnBack.onclick = closeHelp;
+
+    var title = document.createElement("div");
+    title.className = "topbar-title";
+    title.textContent = "Guia i Ajuda";
+
+    var btnFont = document.createElement("button");
+    btnFont.className = "btn-sm" + (fontXL ? " active" : "");
+    btnFont.textContent = fontXL ? "Aa XL" : "Aa+";
+    btnFont.onclick = toggleFontXL;
+
+    topbar.appendChild(btnBack);
+    topbar.appendChild(title);
+    topbar.appendChild(btnFont);
+    appEl.appendChild(topbar);
+
+    var sheet = document.createElement("div");
+    sheet.className = "help-sheet";
+
+    var body = document.createElement("div");
+    body.className = "help-sheet-body";
+    body.innerHTML = activeHelpHtml;
 
     var closeBtn = document.createElement("button");
     closeBtn.className = "btn-lg active";
     closeBtn.style.width = "100%";
-    closeBtn.textContent = "Entesos · Tanca";
-    closeBtn.onclick = function () {
-      if (overlay.parentNode) overlay.parentNode.removeChild(overlay);
-    };
+    closeBtn.textContent = "Entesos · Tornar";
+    closeBtn.onclick = closeHelp;
 
-    overlay.appendChild(content);
-    overlay.appendChild(closeBtn);
-    document.body.appendChild(overlay);
+    sheet.appendChild(body);
+    sheet.appendChild(closeBtn);
+    appEl.appendChild(sheet);
   }
 
   function makeCard(gid, extraClass) {
@@ -82,13 +128,12 @@
     header.className = "home-header";
     header.innerHTML =
       "<h1>Racó Calmat · Kindle E-Ink</h1>" +
-      "<p class='home-subtitle'>" + formatCatalanDate() + " · Decisions, inversions i criança sense pantalles brillants</p>";
+      "<p class='home-subtitle'>" + formatCatalanDate() + " · Decisions, inversions i criança</p>";
     appEl.appendChild(header);
 
     var sections = document.createElement("div");
     sections.className = "home-sections";
 
-    // Block 1: Capital, Empresa & Enginy (2x2)
     var sec1 = document.createElement("div");
     sec1.innerHTML = '<div class="section-heading"><span>CAPITAL, EMPRESA & ENGINY</span><span>SIMULADORS</span></div>';
     var grid = document.createElement("div");
@@ -100,7 +145,6 @@
     sec1.appendChild(grid);
     sections.appendChild(sec1);
 
-    // Block 2: Espai Criança & Calma (Wide card)
     var sec2 = document.createElement("div");
     sec2.innerHTML = '<div class="section-heading"><span>ESPAI CRIANÇA, IOGA & SERENOR</span><span>FAMÍLIA</span></div>';
     var calmCard = makeCard(FEATURED_CALM_GAME, "wide-card");
@@ -114,7 +158,7 @@
 
     var btnTheme = document.createElement("button");
     btnTheme.className = "btn-sm";
-    btnTheme.textContent = inverted ? "◐ Fons clar" : "◐ Fons fosc";
+    btnTheme.textContent = inverted ? "◐ Clar" : "◐ Fosc";
     btnTheme.onclick = function () {
       inverted = !inverted;
       window.CalmStorage.set("inverted_theme", inverted);
@@ -123,13 +167,19 @@
       renderHome();
     };
 
+    var btnFont = document.createElement("button");
+    btnFont.className = "btn-sm" + (fontXL ? " active" : "");
+    btnFont.textContent = fontXL ? "Aa: Extra gran" : "Aa: Més lletra";
+    btnFont.onclick = toggleFontXL;
+
     var btnTips = document.createElement("button");
     btnTips.className = "btn-sm";
-    btnTips.textContent = "? Ús i descans visual";
+    btnTips.textContent = "? Guia";
     btnTips.onclick = function () {
-      showModal(
+      openHelp(
         "<h2>Com treure'n el màxim profit al Kindle</h2>" +
         "<ul>" +
+        "<li><b>Mida de lletra:</b> pots ampliar encara més tot el text en qualsevol moment tocant el botó <b>Aa+</b> de dalt o de baix.</li>" +
         "<li><b>Llum frontal baixa (0–4):</b> amb llum càlida d'ambient, la tinta electrònica descansa la vista exactament com un llibre de paper.</li>" +
         "<li><b>Desat automàtic:</b> tant la teva partida d'inversions com el progrés de <i>Créixer amb Calma</i> es desen sols encara que tanquis la funda.</li>" +
         "<li><b>Adreces d'interès:</b> prem (⋮) al navegador del Kindle per desar <b>wilio-cloud.github.io/k</b> a un sol toc.</li>" +
@@ -138,6 +188,7 @@
     };
 
     footer.appendChild(btnTheme);
+    footer.appendChild(btnFont);
     footer.appendChild(btnTips);
     appEl.appendChild(footer);
   }
@@ -168,14 +219,21 @@
     var actions = document.createElement("div");
     actions.className = "topbar-actions";
 
+    var btnFont = document.createElement("button");
+    btnFont.className = "btn-sm" + (fontXL ? " active" : "");
+    btnFont.textContent = fontXL ? "Aa XL" : "Aa+";
+    btnFont.title = "Mida de la lletra";
+    btnFont.onclick = toggleFontXL;
+
     var btnHelp = document.createElement("button");
     btnHelp.className = "btn-sm";
     btnHelp.textContent = "?";
-    btnHelp.title = "Guia";
+    btnHelp.title = "Ajuda del joc";
     btnHelp.onclick = function () {
-      showModal(g.helpHtml);
+      openHelp(g.helpHtml || "<p>Sense guia addicional.</p>");
     };
 
+    actions.appendChild(btnFont);
     actions.appendChild(btnHelp);
     topbar.appendChild(btnHome);
     topbar.appendChild(title);
@@ -186,20 +244,28 @@
     mount.style.flex = "1";
     mount.style.display = "flex";
     mount.style.flexDirection = "column";
-    mount.style.overflow = "hidden";
     appEl.appendChild(mount);
 
     g.render(mount);
   }
 
+  function rerender() {
+    if (activeHelpHtml) {
+      renderHelpSheet();
+      return;
+    }
+    if (currentView === "home") renderHome();
+    else renderGame(currentView);
+  }
+
   function navigateTo(view) {
+    activeHelpHtml = null;
     if (view !== "home" && (!window.CalmGames || !window.CalmGames[view])) {
       view = "home";
     }
     currentView = view;
     window.CalmStorage.set("active_view", view);
-    if (view === "home") renderHome();
-    else renderGame(view);
+    rerender();
   }
 
   if ("serviceWorker" in navigator && window.location.protocol.indexOf("http") === 0) {
