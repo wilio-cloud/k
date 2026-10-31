@@ -1,6 +1,6 @@
-// Kindle Calm Hub - Main Application Shell & Navigation (v5: Cache-Proof + Larger Touch Help Button)
+// Kindle Calm Hub - Main Application Shell & Navigation (v6: Deep Multi-Day Edition)
 (function () {
-  var APP_VERSION = "v5";
+  var APP_VERSION = "v6";
   var appEl = document.getElementById("app");
   var currentView = window.CalmStorage.get("active_view", "home");
   var inverted = window.CalmStorage.get("inverted_theme", false);
@@ -14,11 +14,11 @@
     document.documentElement.classList.add("font-xl");
   }
 
-  // Proactively purge any stale v1..v4 Cache Storage from older sessions
+  // Proactively purge any stale v1..v5 Cache Storage from older sessions
   if (window.caches && window.caches.keys) {
     window.caches.keys().then(function (keys) {
       keys.forEach(function (k) {
-        if (k !== "kindle-calm-hub-v5") {
+        if (k !== "kindle-calm-hub-v6") {
           window.caches.delete(k);
         }
       });
@@ -105,7 +105,7 @@
   }
 
   function makeCard(gid, extraClass) {
-    var g = window.CalmGames[gid];
+    var g = window.CalmGames && window.CalmGames[gid];
     if (!g) return null;
     var card = document.createElement("button");
     card.type = "button";
@@ -145,14 +145,14 @@
     header.className = "home-header";
     header.innerHTML =
       "<h1>Racó Calmat · Kindle E-Ink</h1>" +
-      "<p class='home-subtitle'>" + formatCatalanDate() + " · Edició " + APP_VERSION + "</p>";
+      "<p class='home-subtitle'>" + formatCatalanDate() + " · Edició Integral " + APP_VERSION + "</p>";
     appEl.appendChild(header);
 
     var sections = document.createElement("div");
     sections.className = "home-sections";
 
     var sec1 = document.createElement("div");
-    sec1.innerHTML = '<div class="section-heading"><span>CAPITAL, EMPRESA & ENGINY</span><span>SIMULADORS</span></div>';
+    sec1.innerHTML = '<div class="section-heading"><span>DINASTIA, MERCATS, HOLDING & ENGINY</span><span>LLARG RECORREGUT</span></div>';
     var grid = document.createElement("div");
     grid.className = "game-grid-2x2";
     MAIN_GRID_GAMES.forEach(function (gid) {
@@ -163,7 +163,7 @@
     sections.appendChild(sec1);
 
     var sec2 = document.createElement("div");
-    sec2.innerHTML = '<div class="section-heading"><span>ESPAI CRIANÇA, IOGA & SERENOR</span><span>FAMÍLIA</span></div>';
+    sec2.innerHTML = '<div class="section-heading"><span>CRIANÇA 0–12A, ESTUDI DE IOGA & JOCS</span><span>FAMÍLIA & CALMA</span></div>';
     var calmCard = makeCard(FEATURED_CALM_GAME, "wide-card");
     if (calmCard) sec2.appendChild(calmCard);
     sections.appendChild(sec2);
@@ -185,11 +185,13 @@
 
     var btnTips = mkBtn("btn-sm", "? Guia", function () {
       openHelp(
-        "<h2>Com treure'n el màxim profit al Kindle (" + APP_VERSION + ")</h2>" +
+        "<h2>Edició Integral " + APP_VERSION + " · Pensada per Durar Dies</h2>" +
         "<ul>" +
-        "<li><b>Mida de lletra:</b> toca el botó <b>Aa+</b> en qualsevol moment per activar la lletra Extra Gran (XL).</li>" +
-        "<li><b>Llum frontal baixa (0–4):</b> amb llum càlida d'ambient, la tinta electrònica descansa la vista com el paper.</li>" +
-        "<li><b>Desat automàtic:</b> totes les partides es desen soles encara que tanquis la funda del Kindle.</li>" +
+        "<li><b>Vides & Capital (Dinastia):</b> juga any a any dels 18 als 85 anys comprant immobles concrets, pujant de carrera i continuant com els teus fills a la següent generació.</li>" +
+        "<li><b>El Joc dels Decennis (8 Campanyes):</b> supera 8 campanyes de 40 anys (Estagflació, Repte del Jubilat, Aportacions DCA, Hivern Japonès i Mode Mestre sense pistes).</li>" +
+        "<li><b>Fundador & Holding:</b> escala sense límit de 16 trimestres i guarda els milions dels teus Exits al teu Holding Personal per fundar o comprar més empreses.</li>" +
+        "<li><b>Créixer amb Calma:</b> més de 80 situacions evolutives de 0 a 12 anys, Estudi de Ioga Restauratiu a mida il·lustrat i 32 jocs familiars sense pantalles.</li>" +
+        "<li><b>Desat automàtic:</b> tanca la funda del Kindle quan vulguis; tota la teva partida t'espera al mateix punt.</li>" +
         "</ul>"
       );
     });
@@ -201,7 +203,7 @@
   }
 
   function renderGame(gameId) {
-    var g = window.CalmGames[gameId];
+    var g = window.CalmGames && window.CalmGames[gameId];
     if (!g) {
       navigateTo("home");
       return;
@@ -266,7 +268,7 @@
 
   if ("serviceWorker" in navigator && window.location.protocol.indexOf("http") === 0) {
     window.addEventListener("load", function () {
-      navigator.serviceWorker.register("./sw.js?v=5").then(function (reg) {
+      navigator.serviceWorker.register("./sw.js?v=6").then(function (reg) {
         if (reg && reg.update) reg.update();
       }).catch(function () {});
     });

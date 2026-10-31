@@ -1,4 +1,4 @@
-/* Kindle Calm Hub - Strict Zero-Flash E-Ink Stylesheet (v4: Larger Typography & Native Sheet Help)
+/* Kindle Calm Hub - Strict Zero-Flash E-Ink Stylesheet (v6: Deep Multi-Day Edition)
  * Optimized for Kindle Paperwhite & Basic (300ppi monochrome displays)
  */
 
@@ -696,3 +696,137 @@ button:disabled {
   padding-left: 20px;
   margin: 6px 0;
 }
+
+/* ==================== V6 DEEP SYSTEMS: CARDS, PAGERS, BADGES & YOGA ==================== */
+.subtabs-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+  width: 100%;
+  flex-shrink: 0;
+}
+
+.pill-btn {
+  font-size: 0.78rem;
+  font-family: ui-monospace, Menlo, Consolas, monospace;
+  padding: 3px 7px;
+  min-height: 29px;
+  border: var(--border-thin);
+  border-radius: 3px;
+}
+
+.pill-btn.active {
+  background: var(--ink);
+  color: var(--paper);
+  border: var(--border-med);
+}
+
+.item-list {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  width: 100%;
+  flex: 1;
+}
+
+.item-row {
+  border: var(--border-thin);
+  border-radius: 4px;
+  padding: 6px 8px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  background: var(--paper);
+}
+
+.item-row.owned {
+  border: var(--border-med);
+}
+
+.item-row-main {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.item-row-title {
+  font-size: 0.92rem;
+  font-weight: bold;
+  line-height: 1.18;
+}
+
+.item-row-sub {
+  font-family: ui-monospace, Menlo, Consolas, monospace;
+  font-size: 0.75rem;
+  line-height: 1.2;
+}
+
+.item-row-actions {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  flex-shrink: 0;
+}
+
+.pager-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 6px;
+  padding-top: 3px;
+  border-top: 1px dotted var(--muted);
+  font-family: ui-monospace, Menlo, Consolas, monospace;
+  font-size: 0.8rem;
+  flex-shrink: 0;
+}
+
+.badge-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 5px;
+  width: 100%;
+}
+
+.badge-card {
+  border: 1px dashed var(--muted);
+  border-radius: 4px;
+  padding: 5px 7px;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.badge-card.unlocked {
+  border: var(--border-med);
+}
+
+.badge-card-title {
+  font-size: 0.84rem;
+  font-weight: bold;
+  line-height: 1.15;
+}
+
+.badge-card-desc {
+  font-size: 0.74rem;
+  font-family: ui-monospace, Menlo, Consolas, monospace;
+  line-height: 1.18;
+}
+
+.asana-svg-box {
+  border: var(--border-med);
+  border-radius: 5px;
+  padding: 6px 8px;
+  margin: 4px 0;
+  text-align: center;
+  background: var(--paper);
+}
+
+.mines-board.expert .mine-cell {
+  width: 30px;
+  height: 30px;
+  font-size: 0.9rem;
+}
+

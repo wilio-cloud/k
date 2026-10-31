@@ -3,16 +3,16 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Actualitzant Racó Calmat...</title>
+  <title>Actualitzant Racó Calmat v6...</title>
   <style>
     body { font-family: Georgia, serif; background: #fff; color: #000; text-align: center; padding: 2rem 1rem; }
     a { display: inline-block; margin-top: 1rem; padding: 12px 20px; border: 2px solid #000; color: #000; text-decoration: none; font-weight: bold; }
   </style>
 </head>
 <body>
-  <h2>Actualitzant a l'edició v5...</h2>
+  <h2>Actualitzant a l'edició v6...</h2>
   <p id="msg">Netejant la memòria cau antiga del Kindle...</p>
-  <a id="go" href="./index.html?v=5">Obrir Racó Calmat v5 →</a>
+  <a id="go" href="./index.html?v=6">Obrir Racó Calmat v6 →</a>
   <script>
     (function () {
       var tasks = [];
@@ -31,9 +31,9 @@
         );
       }
       Promise.all(tasks).then(function () {
-        window.location.replace("./index.html?v=5&t=" + Date.now());
+        window.location.replace("./index.html?v=6&t=" + Date.now());
       }).catch(function () {
-        window.location.replace("./index.html?v=5&t=" + Date.now());
+        window.location.replace("./index.html?v=6&t=" + Date.now());
       });
     })();
   </script>

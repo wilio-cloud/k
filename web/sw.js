@@ -1,18 +1,22 @@
-// Kindle Calm Hub - Service Worker v5 (Network-first with no-cache reload when online)
-var CACHE_NAME = "kindle-calm-hub-v5";
+// Kindle Calm Hub - Service Worker v6 (Network-first with no-cache reload when online)
+var CACHE_NAME = "kindle-calm-hub-v6";
 var ASSETS = [
   "./",
   "./index.html",
-  "./manifest.json?v=5",
-  "./css/eink.css?v=5",
-  "./js/storage.js?v=5",
-  "./js/ui.js?v=5",
-  "./js/games/vides.js?v=5",
-  "./js/games/decennis.js?v=5",
-  "./js/games/fundador.js?v=5",
-  "./js/games/crianca.js?v=5",
-  "./js/games/minesweeper.js?v=5",
-  "./js/app.js?v=5"
+  "./manifest.json?v=6",
+  "./css/eink.css?v=6",
+  "./js/storage.js?v=6",
+  "./js/ui.js?v=6",
+  "./js/data/vides_data.js?v=6",
+  "./js/data/decennis_data.js?v=6",
+  "./js/data/fundador_data.js?v=6",
+  "./js/data/crianca_data.js?v=6",
+  "./js/games/vides.js?v=6",
+  "./js/games/decennis.js?v=6",
+  "./js/games/fundador.js?v=6",
+  "./js/games/crianca.js?v=6",
+  "./js/games/minesweeper.js?v=6",
+  "./js/app.js?v=6"
 ];
 
 self.addEventListener("install", function (event) {
