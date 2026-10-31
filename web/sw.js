@@ -1,18 +1,18 @@
-// Kindle Calm Hub - Offline-Capable Service Worker (v3: Network-first with offline cache fallback)
-var CACHE_NAME = "kindle-calm-hub-v4";
+// Kindle Calm Hub - Service Worker v5 (Network-first with no-cache reload when online)
+var CACHE_NAME = "kindle-calm-hub-v5";
 var ASSETS = [
   "./",
   "./index.html",
-  "./manifest.json",
-  "./css/eink.css",
-  "./js/storage.js",
-  "./js/ui.js",
-  "./js/games/vides.js",
-  "./js/games/decennis.js",
-  "./js/games/fundador.js",
-  "./js/games/crianca.js",
-  "./js/games/minesweeper.js",
-  "./js/app.js"
+  "./manifest.json?v=5",
+  "./css/eink.css?v=5",
+  "./js/storage.js?v=5",
+  "./js/ui.js?v=5",
+  "./js/games/vides.js?v=5",
+  "./js/games/decennis.js?v=5",
+  "./js/games/fundador.js?v=5",
+  "./js/games/crianca.js?v=5",
+  "./js/games/minesweeper.js?v=5",
+  "./js/app.js?v=5"
 ];
 
 self.addEventListener("install", function (event) {
@@ -40,7 +40,7 @@ self.addEventListener("activate", function (event) {
 self.addEventListener("fetch", function (event) {
   if (event.request.method !== "GET") return;
   event.respondWith(
-    fetch(event.request)
+    fetch(event.request, { cache: "no-cache" })
       .then(function (networkRes) {
         if (networkRes && networkRes.status === 200) {
           var copy = networkRes.clone();
@@ -51,7 +51,7 @@ self.addEventListener("fetch", function (event) {
         return networkRes;
       })
       .catch(function () {
-        return caches.match(event.request);
+        return caches.match(event.request, { ignoreSearch: true });
       })
   );
 });

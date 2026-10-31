@@ -1,5 +1,6 @@
-// Kindle Calm Hub - Main Application Shell & Navigation (v4: Native In-App Help & Font Scaling)
+// Kindle Calm Hub - Main Application Shell & Navigation (v5: Cache-Proof + Larger Touch Help Button)
 (function () {
+  var APP_VERSION = "v5";
   var appEl = document.getElementById("app");
   var currentView = window.CalmStorage.get("active_view", "home");
   var inverted = window.CalmStorage.get("inverted_theme", false);
@@ -13,8 +14,31 @@
     document.documentElement.classList.add("font-xl");
   }
 
+  // Proactively purge any stale v1..v4 Cache Storage from older sessions
+  if (window.caches && window.caches.keys) {
+    window.caches.keys().then(function (keys) {
+      keys.forEach(function (k) {
+        if (k !== "kindle-calm-hub-v5") {
+          window.caches.delete(k);
+        }
+      });
+    }).catch(function () {});
+  }
+
   var MAIN_GRID_GAMES = ["vides", "decennis", "fundador", "minesweeper"];
   var FEATURED_CALM_GAME = "crianca";
+
+  function mkBtn(cls, label, onTap) {
+    var b = document.createElement("button");
+    b.type = "button";
+    b.className = cls;
+    b.textContent = label;
+    b.addEventListener("click", function (ev) {
+      ev.preventDefault();
+      onTap();
+    });
+    return b;
+  }
 
   function formatCatalanDate() {
     var days = ["Diumenge", "Dilluns", "Dimarts", "Dimecres", "Dijous", "Divendres", "Dissabte"];
@@ -34,14 +58,15 @@
     rerender();
   }
 
-  // Renders directly inside #app instead of position:fixed overlay so 100% of Kindle firmwares display it cleanly
   function openHelp(htmlContent) {
     activeHelpHtml = htmlContent;
+    appEl.scrollTop = 0;
     rerender();
   }
 
   function closeHelp() {
     activeHelpHtml = null;
+    appEl.scrollTop = 0;
     rerender();
   }
 
@@ -51,19 +76,13 @@
     var topbar = document.createElement("div");
     topbar.className = "topbar";
 
-    var btnBack = document.createElement("button");
-    btnBack.className = "btn-sm";
-    btnBack.textContent = "← Tornar";
-    btnBack.onclick = closeHelp;
+    var btnBack = mkBtn("btn-sm", "← Tornar", closeHelp);
 
     var title = document.createElement("div");
     title.className = "topbar-title";
     title.textContent = "Guia i Ajuda";
 
-    var btnFont = document.createElement("button");
-    btnFont.className = "btn-sm" + (fontXL ? " active" : "");
-    btnFont.textContent = fontXL ? "Aa XL" : "Aa+";
-    btnFont.onclick = toggleFontXL;
+    var btnFont = mkBtn("btn-sm" + (fontXL ? " active" : ""), fontXL ? "Aa XL" : "Aa+", toggleFontXL);
 
     topbar.appendChild(btnBack);
     topbar.appendChild(title);
@@ -77,11 +96,8 @@
     body.className = "help-sheet-body";
     body.innerHTML = activeHelpHtml;
 
-    var closeBtn = document.createElement("button");
-    closeBtn.className = "btn-lg active";
+    var closeBtn = mkBtn("btn-lg active", "Entesos · Tornar al joc", closeHelp);
     closeBtn.style.width = "100%";
-    closeBtn.textContent = "Entesos · Tornar";
-    closeBtn.onclick = closeHelp;
 
     sheet.appendChild(body);
     sheet.appendChild(closeBtn);
@@ -92,6 +108,7 @@
     var g = window.CalmGames[gid];
     if (!g) return null;
     var card = document.createElement("button");
+    card.type = "button";
     card.className = "game-card" + (extraClass ? " " + extraClass : "");
 
     var left = document.createElement("div");
@@ -115,9 +132,9 @@
     card.appendChild(left);
     card.appendChild(badge);
 
-    card.onclick = function () {
+    card.addEventListener("click", function () {
       navigateTo(gid);
-    };
+    });
     return card;
   }
 
@@ -128,7 +145,7 @@
     header.className = "home-header";
     header.innerHTML =
       "<h1>Racó Calmat · Kindle E-Ink</h1>" +
-      "<p class='home-subtitle'>" + formatCatalanDate() + " · Decisions, inversions i criança</p>";
+      "<p class='home-subtitle'>" + formatCatalanDate() + " · Edició " + APP_VERSION + "</p>";
     appEl.appendChild(header);
 
     var sections = document.createElement("div");
@@ -156,36 +173,26 @@
     var footer = document.createElement("div");
     footer.className = "home-footer";
 
-    var btnTheme = document.createElement("button");
-    btnTheme.className = "btn-sm";
-    btnTheme.textContent = inverted ? "◐ Clar" : "◐ Fosc";
-    btnTheme.onclick = function () {
+    var btnTheme = mkBtn("btn-sm", inverted ? "◐ Clar" : "◐ Fosc", function () {
       inverted = !inverted;
       window.CalmStorage.set("inverted_theme", inverted);
       if (inverted) document.body.classList.add("inverted");
       else document.body.classList.remove("inverted");
       renderHome();
-    };
+    });
 
-    var btnFont = document.createElement("button");
-    btnFont.className = "btn-sm" + (fontXL ? " active" : "");
-    btnFont.textContent = fontXL ? "Aa: Extra gran" : "Aa: Més lletra";
-    btnFont.onclick = toggleFontXL;
+    var btnFont = mkBtn("btn-sm" + (fontXL ? " active" : ""), fontXL ? "Aa: Extra gran" : "Aa: Més lletra", toggleFontXL);
 
-    var btnTips = document.createElement("button");
-    btnTips.className = "btn-sm";
-    btnTips.textContent = "? Guia";
-    btnTips.onclick = function () {
+    var btnTips = mkBtn("btn-sm", "? Guia", function () {
       openHelp(
-        "<h2>Com treure'n el màxim profit al Kindle</h2>" +
+        "<h2>Com treure'n el màxim profit al Kindle (" + APP_VERSION + ")</h2>" +
         "<ul>" +
-        "<li><b>Mida de lletra:</b> pots ampliar encara més tot el text en qualsevol moment tocant el botó <b>Aa+</b> de dalt o de baix.</li>" +
-        "<li><b>Llum frontal baixa (0–4):</b> amb llum càlida d'ambient, la tinta electrònica descansa la vista exactament com un llibre de paper.</li>" +
-        "<li><b>Desat automàtic:</b> tant la teva partida d'inversions com el progrés de <i>Créixer amb Calma</i> es desen sols encara que tanquis la funda.</li>" +
-        "<li><b>Adreces d'interès:</b> prem (⋮) al navegador del Kindle per desar <b>wilio-cloud.github.io/k</b> a un sol toc.</li>" +
+        "<li><b>Mida de lletra:</b> toca el botó <b>Aa+</b> en qualsevol moment per activar la lletra Extra Gran (XL).</li>" +
+        "<li><b>Llum frontal baixa (0–4):</b> amb llum càlida d'ambient, la tinta electrònica descansa la vista com el paper.</li>" +
+        "<li><b>Desat automàtic:</b> totes les partides es desen soles encara que tanquis la funda del Kindle.</li>" +
         "</ul>"
       );
-    };
+    });
 
     footer.appendChild(btnTheme);
     footer.appendChild(btnFont);
@@ -205,12 +212,9 @@
     var topbar = document.createElement("div");
     topbar.className = "topbar";
 
-    var btnHome = document.createElement("button");
-    btnHome.className = "btn-sm";
-    btnHome.textContent = "← Inici";
-    btnHome.onclick = function () {
+    var btnHome = mkBtn("btn-sm", "← Inici", function () {
       navigateTo("home");
-    };
+    });
 
     var title = document.createElement("div");
     title.className = "topbar-title";
@@ -219,19 +223,11 @@
     var actions = document.createElement("div");
     actions.className = "topbar-actions";
 
-    var btnFont = document.createElement("button");
-    btnFont.className = "btn-sm" + (fontXL ? " active" : "");
-    btnFont.textContent = fontXL ? "Aa XL" : "Aa+";
-    btnFont.title = "Mida de la lletra";
-    btnFont.onclick = toggleFontXL;
+    var btnFont = mkBtn("btn-sm" + (fontXL ? " active" : ""), fontXL ? "Aa XL" : "Aa+", toggleFontXL);
 
-    var btnHelp = document.createElement("button");
-    btnHelp.className = "btn-sm";
-    btnHelp.textContent = "?";
-    btnHelp.title = "Ajuda del joc";
-    btnHelp.onclick = function () {
+    var btnHelp = mkBtn("btn-sm", "? Ajuda", function () {
       openHelp(g.helpHtml || "<p>Sense guia addicional.</p>");
-    };
+    });
 
     actions.appendChild(btnFont);
     actions.appendChild(btnHelp);
@@ -270,7 +266,9 @@
 
   if ("serviceWorker" in navigator && window.location.protocol.indexOf("http") === 0) {
     window.addEventListener("load", function () {
-      navigator.serviceWorker.register("./sw.js").catch(function () {});
+      navigator.serviceWorker.register("./sw.js?v=5").then(function (reg) {
+        if (reg && reg.update) reg.update();
+      }).catch(function () {});
     });
   }
 

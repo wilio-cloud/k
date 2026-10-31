@@ -51,7 +51,7 @@ def test_service_worker_assets() -> None:
     for rel in assets:
         if rel == "./":
             continue
-        clean = rel.lstrip("./")
+        clean = rel.lstrip("./").split("?")[0]
         target = WEB_DIR / clean
         assert target.exists(), f"SW asset missing on disk: {rel}"
     print(f"      ✓ All {len(assets)} Service Worker assets exist on disk.")

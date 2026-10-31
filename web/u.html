@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Actualitzant Racó Calmat...</title>
+  <style>
+    body { font-family: Georgia, serif; background: #fff; color: #000; text-align: center; padding: 2rem 1rem; }
+    a { display: inline-block; margin-top: 1rem; padding: 12px 20px; border: 2px solid #000; color: #000; text-decoration: none; font-weight: bold; }
+  </style>
+</head>
+<body>
+  <h2>Actualitzant a l'edició v5...</h2>
+  <p id="msg">Netejant la memòria cau antiga del Kindle...</p>
+  <a id="go" href="./index.html?v=5">Obrir Racó Calmat v5 →</a>
+  <script>
+    (function () {
+      var tasks = [];
+      if ("serviceWorker" in navigator && navigator.serviceWorker.getRegistrations) {
+        tasks.push(
+          navigator.serviceWorker.getRegistrations().then(function (regs) {
+            return Promise.all(regs.map(function (r) { return r.unregister(); }));
+          })
+        );
+      }
+      if (window.caches && window.caches.keys) {
+        tasks.push(
+          window.caches.keys().then(function (keys) {
+            return Promise.all(keys.map(function (k) { return window.caches.delete(k); }));
+          })
+        );
+      }
+      Promise.all(tasks).then(function () {
+        window.location.replace("./index.html?v=5&t=" + Date.now());
+      }).catch(function () {
+        window.location.replace("./index.html?v=5&t=" + Date.now());
+      });
+    })();
+  </script>
+</body>
+</html>
